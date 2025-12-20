@@ -1,0 +1,137 @@
+<html>
+<head>
+<title>DHTMLCentral.com - Free Dynamic HTML Scripts - WriteText Demo</title>
+<meta name="Author" content="Thomas Brattli (webmaster@dhtmlcentral.com)">
+<META NAME="Generator" CONTENT="Designer:Thomas Brattli (www.bratta.com)">
+<meta name="KeyWords" content="DHTML, HTML, Dynamic HTML, Javascript, Cascading Style Sheets, Cross-browser, Cross browser, Javascripts, DOM, Scripts, Free Scripts,writetext,write,text,effects,text,animation,letter,letters,layer,div,">
+<meta name="Description" content="Dynamic HTML Central - The ultimate place to find DHTML scripts, demos, tutorials and help.">
+<style type="text/css">
+#divWrite  {position:absolute; top:170px; left:0px; width:100%; visibility:hidden;}
+#divWrite2 {position:absolute; top:250px; left:200px; width:300px; visibility:hidden} 
+</style>
+<script language="JavaScript" type="text/javascript">
+/**********************************************************************************   
+WriteText 
+*   Copyright (C) 2001 <a href="/dhtmlcentral/thomas_brattli.asp">Thomas Brattli</a>
+*   This script was released at DHTMLCentral.com
+*   Visit for more great scripts!
+*   This may be used and changed freely as long as this msg is intact!
+*   We will also appreciate any links you could give us.
+*
+*   Made by <a href="/dhtmlcentral/thomas_brattli.asp">Thomas Brattli</a> 
+*********************************************************************************/
+
+function lib_bwcheck(){ //Browsercheck (needed)
+	this.ver=navigator.appVersion
+	this.agent=navigator.userAgent
+	this.dom=document.getElementById?1:0
+	this.opera5=this.agent.indexOf("Opera 5")>-1
+	this.ie5=(this.ver.indexOf("MSIE 5")>-1 && this.dom && !this.opera5)?1:0; 
+	this.ie6=(this.ver.indexOf("MSIE 6")>-1 && this.dom && !this.opera5)?1:0;
+	this.ie4=(document.all && !this.dom && !this.opera5)?1:0;
+	this.ie=this.ie4||this.ie5||this.ie6
+	this.mac=this.agent.indexOf("Mac")>-1
+	this.ns6=(this.dom && parseInt(this.ver) >= 5) ?1:0; 
+	this.ns4=(document.layers && !this.dom)?1:0;
+	this.bw=(this.ie6 || this.ie5 || this.ie4 || this.ns4 || this.ns6 || this.opera5)
+	return this
+}
+var bw=new lib_bwcheck()
+
+
+//Here are the variables you have to set:                                                                 
+
+//There are 2 ways this script can work.
+// 0 = WriteText
+// 1 = RemoveText
+wWorks = 0
+
+var wText = "www.bratta.com" //The text you want write out
+var wFontsize = 70           //Set the fontsize you want
+var wColor = "#003300"       //The text color
+var wAlign = "center"        //the alignment of the text, you can choose center, right or left.
+var wSpeed = 150             //Set the speed you want it to write in (in milliseconds between each letter)
+var wFont = 'arial black,arial,helvetica,sans-serif' //The font face
+var wHide = true             //do you want it to hide when its done? (true or false)
+var wHidewait = 1000         //Set the time you want it to wait before it hides
+        
+/*You can remove this if you don't wan't it to start right away.
+You can have it start if someone clicks a link (make a link like this:
+<a href="#" onclick="writeInit()">Click to writetext</a>)*/
+	onload = writeInit;
+
+/********* You shouldn't really have to set anything below this point ***********/
+//Object functions
+function makeWriteObj(obj,text,size,color,align,speed,font,hide,hidewait,works){
+   	this.css=bw.dom? document.getElementById(obj).style:bw.ie4?document.all[obj].style:bw.ns4?document.layers[obj]:0;	
+   	this.writeref=bw.dom? document.getElementById(obj):bw.ie4?document.all[obj]:bw.ns4?document.layers[obj].document:0;	
+	this.text=text; this.size=size; this.color=color; this.align=align; this.speed=speed;
+	this.font=font; this.hide=hide; this.hidewait=hidewait; this.writeWrite=b_writeWrite;
+	this.writeText=b_writeText; this.removeText=b_removeText; this.works=works; this.write=b_write
+	if(bw.dom || bw.ie4){ //Setting the style properties
+		this.css.fontFamily=this.font; this.css.fontSize=this.size+"px"; this.css.color=this.color;
+		this.css.textAlign=this.align
+	}
+	this.obj = obj + "Object"; 	eval(this.obj + "=this"); return this
+}
+function b_write(num,fn){
+	if(!fn) fn=""
+	if(!this.works) this.writeText(num,fn) 
+	else this.removeText(fn)
+}
+function b_writeWrite(text){
+	if(bw.ns4){
+		this.writeref.write('<p style="text-align:'+this.align+'; font-size:' +this.size+'px; font-family:'+this.font+'; color:'+this.color+'">'+text+'</p>')
+		this.writeref.close()
+	}else this.writeref.innerHTML = text
+}
+function b_writeText(num,fn){
+	if (num<=this.text.length){
+		wtext = this.text.substr(0,num)
+		this.writeWrite(wtext)
+		num ++
+		setTimeout(this.obj+".writeText("+num+",'"+fn+"')",this.speed)
+	}else{
+		if(this.hide) setTimeout(this.obj+".css.visibility='hidden'",this.hidewait);
+		eval(fn)
+	}
+}
+function b_removeText(fn){
+	if (this.text.length>0){
+		this.text = this.text.slice(0,this.text.length-1)
+		this.writeWrite(this.text)
+		setTimeout(this.obj+".removeText('"+fn+"')",this.speed)
+	}else{
+		if(this.hide) setTimeout(this.obj+".css.visibility='hidden'",this.hidewait);
+		eval(fn)
+	}
+}
+/*Initiates the object, shows it and starts the zoom
+****************************************************************************/
+function writeInit(){
+	if(bw.bw){
+		oWrite = new makeWriteObj('divWrite',wText,wFontsize,wColor,wAlign,wSpeed,wFont,wHide,wHidewait,wWorks)
+		//Change the line below to: oWrite.write(0) if you only have one object.
+		oWrite.write(0,'oWrite2.css.visibility="visible";oWrite2.write(0)')
+		oWrite.css.visibility = "visible"
+
+		//Another object, just remove this line if you only want one object. It's just to show you how can have more objects.
+		oWrite2 = new makeWriteObj('divWrite2',"This is layer 2",20,"red","left",100,"Verdana,Arial",1,500,0)
+	}
+}
+</script>
+</head>
+
+<body marginleft="0" marginheight="0">
+<!-- START DELETE -->
+<div style="position:absolute; left:0; top:0"><a href="#" onclick="self.close(); return false"><img src="/images/logo.gif" width="165" height="54" alt="" border="0" alt="Click to close window"></a></div>
+<br><br><br>
+<!-- END DELETE -->
+
+<div id="divWrite">asdasd</div>
+<div id="divWrite2">This is layer 2</div>
+
+
+</body>
+</html>
+

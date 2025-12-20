@@ -1,0 +1,108 @@
+<html>
+<!--  Created with the CoffeeCup HTML Editor  -->
+<!--        http://www.coffeecup.com/         -->
+<!--     Brewed on 6/22/2003 11:03:22 PM      -->
+<head>
+  <title>ChangeText tester</title>
+  
+  <style type="text/css">
+
+/* Minimal style sheet for area. Must use absolute positioning in order
+ * to work with NS4. However, if absolute is specified without left or
+ * top coordinates, then the current position in the flow is used, giving
+ * the effect of relative positioning.
+ * Unfortunately, this trick does not work in tables, nor does it work
+ * in the middle of a page unless you deliberately position the next element
+ * to avoid overlapping the message area.
+ * Here: we shift the message area 20% to the right.
+ */
+#divMessage { position: absolute; left: 20%; }
+
+/* Default style used for the dynamic message. Can be overriden on a
+ * per-message basis. */
+.ctMessage { color: #7f7fff; font-size: 150%; width: 70%; }
+
+/* Custom style sheets used for specific messages */
+.msgThree { color: #ff0000; font-size: large; width: 70%; }
+.dumpStyle { color: #000000; font-size: small; }
+
+/* Create some nice hover effects for the links */
+.ctLinks a { color:#336699; font-family:arial,helvetica,sans-serif;
+	     font-weight:bold; text-decoration: none; }
+.cdLinks a:visited { text-decoration: none; }
+.ctLinks a:hover { color:#000000; background: #7F7FFF; }
+
+body {background-color: #ffffff; background-image: none }
+
+</style>
+
+  <script language="JavaScript" type="text/JavaScript" src="scripts/changetext.js">
+  </script>
+
+  <script language="JavaScript" type="text/JavaScript">
+
+    // Create a changeText object.
+    divMessageObj = new changeTextObj('divMessage');
+
+    // Debugging function creates a string with top-level contents
+    // of any object.
+    function dumpObj(obj)
+    {
+        if (obj == null) return 'null object';
+
+	var result = 'dump' + obj.id + ':';
+	for (var member in obj)
+	{
+	    result += "<BR>" + member + " = " + obj[member];
+	}
+
+	return result;
+    }
+
+    // A sample of messages contained in an array
+    messages=new Array();
+    messages[3]="Message three has its own style.";
+    messages['HTML']='Messages can contain <B>HTML</B> (for example, <A HREF="http://www.htmlhelp.com">links</A>. HTML tags require the use of a JavaScript variable because you cannot embed HTML strings within other HTML strings.'
+
+    // This won't work because the page hasn't finished loading yet,
+    // but it *should* be harmless.
+    divMessageObj.changeText('No good');
+  </script>
+</head>
+
+<body bgcolor="#ffffff">
+<H1>Test file for changetext.js script:</H1>
+
+<H2>
+Roll mouse over links on the left in order to change text on the right.
+</H2>
+
+<div id="divMessage">
+This is the text that's visible before any calls to changeText.
+This text can be empty or hidden.
+</div>
+
+<div class="ctLinks">
+<p>
+<a href="#" onmouseover="divMessageObj.changeText('hello world')">Hello link
+</a></p>
+<p>
+<a href="#" onmouseover="divMessageObj.changeText('This is a test of the Emergency Broadcast System.')">Test link
+</a></p>
+<p>
+<a href="#" onmouseover="divMessageObj.changeText('&#8220;Four score and seven years ago, our forefathers brought forth on this continent a new nation, concieved in liberty and dedicated to the proposition that all men are created equal.&#8221;')">Long link
+</a></p>
+<p>
+<a href="#" onmouseover="divMessageObj.changeText(messages[3],'msgThree')">link 3
+</a></p>
+<p>
+<a href="#" onmouseover="divMessageObj.changeText(messages['HTML'])">HTML link
+</a></p>
+<p>
+<a href="#" onmouseover="divMessageObj.changeText(dumpObj(divMessageObj.css), 'dumpStyle')">Debug dump
+</a></p>
+</div>
+
+</body>
+</html>
+

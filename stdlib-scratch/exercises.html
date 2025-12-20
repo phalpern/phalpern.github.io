@@ -1,0 +1,416 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="Version" content="8.0.3410">
+<meta name="Date" content="10/11/96">
+<meta name="Template"
+content="C:\Program Files\Microsoft Office\Office\HTML.DOT">
+<meta name="GENERATOR" content="Microsoft FrontPage Express 2.0">
+<title>The C++ Standard Library from Scratch Exercises</title>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000" link="#0000FF"
+vlink="#800080">
+
+<h1>Chapter 3 Exercises</h1>
+
+<h2>Exercise 3.1: Vectors and strings</h2>
+
+<p>Imagine you are writing a program to manage a shopping list.
+Each shopping list item is represented by a string stored in a
+container. Your design requires a <font size="4"><tt>print</tt></font>
+function that prints out the contents of the shopping list. </p>
+
+<p>Using a <font size="4"><tt>vector</tt></font> to hold the
+shopping list items, write a <font size="4"><tt>print</tt></font>
+function to print out the contents of a vector of strings. Test
+your <font size="4"><tt>print</tt></font> function with a main
+program that does the following: </p>
+
+<ol>
+    <li>Create an empty <font size="4"><tt>vector</tt></font>.
+        Print it.</li>
+    <li>Append the items, &quot;eggs,&quot; &quot;milk,&quot;
+        &quot;sugar,&quot; &quot;chocolate,&quot; and
+        &quot;flour&quot; to the list. Print it.</li>
+    <li>Remove the last element from the vector. Print it.</li>
+    <li>Append the item, &quot;coffee&quot; to the vector. Print
+        it.</li>
+    <li>Write a loop that searches for the item,
+        &quot;sugar&quot; and replace it with &quot;honey.&quot;
+        Print the vector.</li>
+    <li>Write a loop that searches for the item,
+        &quot;milk,&quot; and then remove it from the vector.
+        (You are permitted to reorder the vector to accomplish
+        the removal, if you want.) Print the vector.</li>
+    <li>Search for the item, &quot;milk&quot; and find a way to
+        remove it without changing the order of the rest of the
+        vector. (This is not necessarily an efficient operation.)
+        Print the vector one more time.</li>
+</ol>
+
+<h1>Chapter 4 Exercises</h1>
+
+<h2>Exercise 4.1: Using lists</h2>
+
+<p>In Exercise 3.1, you wrote a small part of a shopping-list
+management program using vectors. Now we'll switch to using <font
+face="Courier New">list</font> instead of <font
+face="Courier New">vector</font> for the shopping list. </p>
+
+<ol>
+    <li>Copy your solution from Exercise 3.1. Globally replace
+        every occurrence of <font face="Courier New">vector</font>
+        with <font face="Courier New">list</font>. Try to compile
+        it. Why doesn't it compile?</li>
+    <li>Rewrite the <font size="4"><tt>print</tt></font> function
+        and main program so that they will work for the
+        list-based shopping list. Run the new program.</li>
+</ol>
+
+<h2>Exercise 4.2: Inserting and removing list elements</h2>
+
+<p>Modify the main program from Exercise 4.1 to do the following:
+</p>
+
+<ol>
+    <li>Create an empty list.</li>
+    <li>Append the items, &quot;eggs,&quot; &quot;milk,&quot;
+        &quot;sugar,&quot; &quot;chocolate,&quot; and
+        &quot;flour&quot; to the list. Print the list.</li>
+    <li>Remove the first element from the list. Print the list.</li>
+    <li>Insert the item, &quot;coffee&quot; at the beginning of
+        the list. Print the list.</li>
+    <li>Find the item, &quot;sugar&quot; and replace it with
+        &quot;honey.&quot; Print the list.</li>
+    <li>Insert the item, &quot;baking powder&quot; before
+        &quot;milk&quot; in the list. Print the list.</li>
+</ol>
+
+<h1>Chapter 5 Exercises</h1>
+
+<h2>Exercise 5.1: Simple stream I/O</h2>
+
+<p>Using the <font size="4"><tt>print</tt></font> function from
+Exercises 4.1 and 4.2, write a main program that prompts the user
+for a shopping list item, and then reads a string and inserts it
+into a list in alphabetical order. The program should loop until
+the user enters <font size="4"><tt>done</tt></font>. Print the
+resulting list using the <font size="4"><tt>print</tt></font>
+function. </p>
+
+<p>Make sure that your program is capable of handling entries
+like &quot;Cheddar cheese&quot; and that it doesn't go into an
+endless loop if you enter the end-of-file character (Ctrl+z on
+DOS and MS Windows, Ctrl+d on UNIX). </p>
+
+<h2>Exercise 5.2: String manipulations</h2>
+
+<p>Write a program that initializes a <font face="Courier New">string</font>
+with the following text: </p>
+
+<p><font face="Courier New">Congratulations Mrs. &lt;name&gt;,
+you and Mr. &lt;name&gt; are the lucky recipients of a trip for
+two to XXXXXX. Your trip to XXX is already scheduled.</font> </p>
+
+<p>Use string functions to perform the following manipulations: </p>
+
+<ol>
+    <li>Replace every occurrence of &quot;&lt;name&gt;&quot; with
+        &quot;Luzer.&quot;</li>
+    <li>Replace every occurrence of &quot;XXX,&quot; regardless
+        of the number of Xs, with &quot;Siberia.&quot;</li>
+    <li>Insert the letters &quot;un&quot; before the first
+        occurrence of the word &quot;luck.&quot;</li>
+    <li>Append the words &quot;for December&quot; to the string.</li>
+    <li>Print the resulting string. </li>
+</ol>
+
+<h1>Chapter 6 Exercises</h1>
+
+<h2>Exercise 6.1: Algorithms</h2>
+
+<p>Using both the <font face="Courier New">print</font> function
+from Exercise 3.1 (vector-based shopping list) and the <font
+face="Courier New">print</font> function from Exercise 4.1
+(list-based shopping list), write a main program to perform the
+following manipulations (the <font face="Courier New">print</font>
+functions will be overloaded on different argument types, so they
+will not conflict): </p>
+
+<ol>
+    <li>Create an empty list.</li>
+    <li>Append the items, &quot;eggs,&quot; &quot;milk,&quot;
+        &quot;sugar,&quot; &quot;chocolate,&quot; and
+        &quot;flour&quot; to the list. Print the list.</li>
+    <li>Use the copy algorithm to copy the contents of the list
+        to a vector. Print the vector.</li>
+    <li>Use the sort algorithm to sort the vector. Print the
+        vector.</li>
+</ol>
+
+<h2>Exercise 6.2: Function objects</h2>
+
+<p>Beginning with your solution to Exercise 6.1, add the
+following steps to your main program: </p>
+
+<ol>
+    <li>Use the sort algorithm and the <font face="Courier New">greater&lt;T&gt;</font>
+        function object template to sort the vector in descending
+        order. Print the vector.</li>
+    <li>Use the <font face="Courier New">count_if</font>
+        algorithm with a binder to count the number of elements
+        that come before &quot;flour&quot; in alphabetical order.
+        Print the result. Apply this solution to both the list
+        and the vector. Do you get the same results?</li>
+    <li>Create your own function object. Use it in conjunction
+        with <font face="Courier New">count_if</font> to count
+        the number of elements that contain exactly five letters.</li>
+</ol>
+
+<h2>Exercise 6.3: Sets</h2>
+
+<p>A building security system has door locks that are opened by
+typing a four-digit access code into a keypad. The access code is
+validated by querying an <font face="Courier New">Access</font>
+object with the following interface: </p>
+
+<blockquote>
+    <pre>class Access
+{
+public:
+&nbsp; void activate(unsigned code);
+&nbsp; void deactivate(unsigned code);
+&nbsp; bool isactive(unsigned code) const;
+};</pre>
+</blockquote>
+
+<p>Each employee is given a different access code, which is
+activated using the <font size="4"><tt>activate()</tt></font>
+function. When an employee leaves the company, his or her access
+code is deactivated using the <font size="4"><tt>deactivate()</tt></font>
+function. </p>
+
+<p>Implement the <font face="Courier New">Access</font> class
+specified above. Write a test program that does the following: </p>
+
+<ol>
+    <li>Create an <font face="Courier New">Access</font> object.</li>
+    <li>Activate the codes 1234, 9999, and 9876.</li>
+    <li>Prompt the user for an access code. Read the code from
+        the console.</li>
+    <li>Tell the user whether the door opened successfully.</li>
+    <li>Repeat the last two steps until the door opens.</li>
+    <li>Deactivate code that worked. Also, deactivate code 9999
+        and activate code 1111.</li>
+    <li>Repeat steps 3 and 4 until the door opens.</li>
+</ol>
+
+<h2>Exercise 6.4: Maps</h2>
+
+<p>The customer that uses the security system described in the
+previous exercise now wants to associate an access level with
+each access code. Users with high access levels can open doors to
+more security-sensitive parts of the building than users with
+lower access levels. Begin with your solution to the previous
+exercise. Modify the <font face="Courier New">Access</font> class
+from the previous exercise so that an integer access level is
+associated with each code. The new interface should be as
+follows: </p>
+
+<blockquote>
+    <pre>class Access
+{
+public:
+&nbsp; void activate(unsigned code, unsigned level);
+&nbsp; void deactivate(unsigned code);
+&nbsp; bool isactive(unsigned code, unsigned level) const;
+};</pre>
+</blockquote>
+
+<p>The <font face="Courier New">isactive()</font> function
+returns true if the specified access code has an access level
+greater than or equal to the specified access level. (Of course,
+it should return false if the access code is not active at all.)
+Modify the main program to do the following: </p>
+
+<ol>
+    <li>Create an <font size="4"><tt>Access</tt></font> object.</li>
+    <li>Activate code 1234 with access level 1, code 9999 with
+        access level 5, and code 9876 with access level 9.</li>
+    <li>Prompt the user for an access code. Read the code from
+        the console.</li>
+    <li>Assuming a door that requires access level 5 for entry,
+        tell the user whether the door opened successfully.</li>
+    <li>Repeat the last two steps until the door opens.</li>
+    <li>Deactivate the code that worked. Change the access level
+        of code 9999 to 8. Activate code 1111 with access level
+        7.</li>
+    <li>Prompt the user for an access code. Read the code from
+        the console.</li>
+    <li>Assuming a door that requires access level 7 for entry,
+        tell the user whether the door opened successfully.</li>
+    <li>Repeat the last two steps until the door opens.</li>
+</ol>
+
+<h1>Chapter 7 Exercises</h1>
+
+<h2>Exercise 7.1: Deques</h2>
+
+<p>A company that provides a special service for wind surfers
+installs wind gauges at popular windsurfing locations. Each gauge
+reports the current wind speed to a central computer every five
+minutes. When a user connects to the service she or he is able to
+retrieve recent high, low, and average wind speeds for her or his
+selected location. (A service like this really exists! It&#146;s
+called the Wind Hot Line.) </p>
+
+<p>The central computer creates a <font face="Courier New">WindGauge</font>
+object for each gauge. The <font face="Courier New">WindGauge</font>
+class interface looks as follows: </p>
+
+<blockquote>
+    <pre>class WindGauge
+{
+public:
+&nbsp; WindGauge(int period = 12);
+&nbsp; void currentWindSpeed(int speed);
+&nbsp; int high() const;
+&nbsp; int low() const;
+&nbsp; int average() const;
+private:
+&nbsp; // (exercise for the student)
+};</pre>
+</blockquote>
+
+<p>The constructor argument specifies how much history is
+retained by the object (default 12 periods == 1 hour). When <font
+face="Courier New">currentWindSpeed()</font> is called, the
+current wind speed is added to the history. If the history is
+then longer than the specified period, the oldest wind speed is
+discarded. The other three functions return the highest, lowest,
+and average wind speeds reported during the history period. </p>
+
+<p>Implement the <font face="Courier New">WindGauge</font> class
+as specified above. Write a <font face="Courier New">dump</font>
+function that prints out the low, high, and average wind speed
+for a <font face="Courier New">WindGauge</font>'s data. Write a
+test program that does the following: </p>
+
+<ol>
+    <li>Create a <font face="Courier New">WindGauge.</font></li>
+    <li>Add five wind speeds: 15, 16, 12, 15, and 15, and then
+        dump the gauge.</li>
+    <li>Add ten more measurements: 16, 17, 16, 16, 20, 17, 16,
+        15, 16, and 20 (bringing the total to over 12) and dump
+        the numbers again.</li>
+</ol>
+
+<h2>Exercise 7.2: I/O manipulators</h2>
+
+<p>A program that generates the table of contents for books
+stores the contents in a <font face="Courier New">map&lt;int,
+string&gt;</font>, where the key is the page number and the
+string is the chapter name. (The key must be the page number so
+that the chapters are sorted in page-number order.) Each element
+of this map must be printed in the following format:</p>
+
+<blockquote>
+    <pre><font face="Courier New">Chapter one.................................................  1
+Chapter two................................................. 23</font></pre>
+</blockquote>
+
+<p>The chapter name is left-justified and padded with periods to
+60 columns. The page number is right-justified and padded to
+three digits with spaces.</p>
+
+<p>Write a program that does the following:</p>
+
+<ol>
+    <li>Create a <font face="Courier New">std::map&lt;int,
+        std::string&gt;</font>. Fill it with the following pairs:
+        (1, &quot;Introduction&quot;), (9, &quot;Chapter 1:
+        Introducing TinyPIM&quot;), (30, &quot;Chapter 2:
+        Implementing the Address Class with Text String&quot;)
+        and (57, &quot;Chapter 3: Creating the Address Book Using
+        Container Classes&quot;).</li>
+    <li>Iterate through each element of the map and print out the
+        table of contents entry, using I/O manipulators to get
+        the output into the format described above.</li>
+</ol>
+
+<h1>Chapter 8 Exercises</h1>
+
+<h2>Exercise 8.1: User-defined algorithms</h2>
+
+<p>Copy your solution from Exercise 6.1 (or get a fresh version
+from the Web page). Merge the two <font face="Courier New">print</font>
+functions into a single template function that works like a
+standard algorithm. Modify the main program to use the new <font
+face="Courier New">print</font> interface. Add one line to the
+main program to print the vector, omitting the first and last
+elements.</p>
+
+<h1>Chapter 9 Exercises</h1>
+
+<h2>Exercise 9.1: User-Defined I/O</h2>
+
+<p>A scientific graphing system needs to represent points on a
+two-dimensional plain using <em>x, y</em> coordinates (known as <em>Cartesian</em>
+coordinates). The following data class is used for this
+representation:</p>
+
+<blockquote>
+    <pre>class point
+{
+public:
+  point() : x_(0.0), y_(0.0) { }
+  point(double x, double y) : x_(x), y_(y) { }
+  double x() const { return x_; }
+  double y() const { return y_; }
+private:
+  double x_, y_;
+};</pre>
+</blockquote>
+
+<p>A point is represented textually as <em>(x, y)</em>. For
+example (-1.5, 6.0) represents a point one-and-one-half units to
+the left and six units up from the origin, (0, 0). Implement
+stream input and output operators (<font face="Courier New">operator&gt;&gt;</font>
+and <font face="Courier New">operator&lt;&lt;</font>) for the <font
+face="Courier New">point</font> class. (Implementation hint for
+the input operator: To modify a point object, you need to create
+a new point and assign it to the old one.) Test your functions
+with the following test program:</p>
+
+<blockquote>
+    <pre>int main()
+{
+  point p;
+
+  while (std::cin.good())
+  {
+    std::cout &lt;&lt; &quot;Enter point as (x, y): &quot;;
+    if (std::cin.peek() == 'q')
+      break;  // Quit program
+
+    if (std::cin &gt;&gt; p)
+    {
+      std::cout &lt;&lt; &quot;You entered: **&quot; &lt;&lt; std::setfill('*')
+                &lt;&lt; std::setw(15) &lt;&lt; std::left &lt;&lt; p &lt;&lt; std::endl;
+    }
+    else if (! std::cin.bad() &amp;&amp; ! std::cin.eof())
+    {
+      std::cin.clear();
+      std::cout &lt;&lt; &quot;Bad input&quot; &lt;&lt; std::endl;
+    }
+    std::cin.ignore(10000, '\n');
+  } // end while
+
+  return 0;
+}</pre>
+</blockquote>
+</body>
+</html>

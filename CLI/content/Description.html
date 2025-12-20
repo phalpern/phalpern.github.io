@@ -1,0 +1,169 @@
+<HTML>
+    <HEAD>
+        <TITLE>CLI Power Tools - Product Description</TITLE>
+        <META HTTP-EQUIV="Content-Type" CONTENT="text/html;
+        charset=iso-8859-1">
+        <META NAME="Author" CONTENT="Pablo Halpern">
+        <META NAME="Keywords" CONTENT="Cisco CLI Cisco like command
+        line interface development tool WindRiver RapidControl for
+        CLI">
+        <META NAME="Description" CONTENT="CLI Power Tools is a
+        command-line interface (CLI) development tool for embedded
+        software developers that dramatically decreases the resources
+        needed to develop a high-quality CLI. Unlike packages
+        WindRiver&#39;s RapidControl for CLI, it is designed for team \
+        development and can produce a truly Cisco-compliant CLI.">
+        <BASE TARGET="_top">
+<STYLE TYPE="text/css">
+ body { background: #FFFFFF; font-family: BOOKMAN OLD STYLE,PALATINO,SERIF }
+
+ p.c4 {font-size: 70%; text-align: center}
+ h1.c3 {text-align: center}
+ td.c2 {text-align:right}
+ td.c1 {text-align:left}
+</STYLE>
+    </HEAD>
+
+    <BODY>
+        <TABLE CLASS="subtext" WIDTH="100%">
+            <TR>
+                <TD CLASS="c1">Email: <A HREF=
+                "mailto:clipowertools@halpernwightsoftware.com">
+                clipowertools@halpernwightsoftware.com</A></TD>
+
+                <TD CLASS="c2">Phone: +1 603-801-4558</TD>
+            </TR>
+        </TABLE>
+
+        <H1 CLASS="c3">CLI Power Tools</H1>
+
+        <P CLASS="c4">Updated <UpdateTime>07/10/2003</UpdateTime></P>
+
+        <P><B><BIG>CLI Power Tools</BIG></B> is a command-line
+        interface (CLI) development tool for embedded software
+        developers that dramatically decreases the resources needed to
+        develop a high-quality CLI. Unlike some other packages, it is
+        designed for team development and can produce a truly
+        Cisco-compliant CLI.</P>
+
+        <P>If you need to develop a CLI for a network-based hardware or
+        software product, <B><BIG>CLI Power Tools</BIG></B> could cut 3
+        to 6 months off the development time. Here&#39;s how it
+        works:</P>
+
+        <P>You describe individual commands in a simple Command
+        Description Language (CDL). The CDL file describes the syntax
+        of the command, including keywords, parameters, optional
+        parameters, repeating parameters, parameter ranges,
+        context-sensitive help messages, modes, and privileges. Each
+        command also has a piece of code attached to actually execute
+        its action. (Currently the code can be C or C++, although other
+        languages are being implemented.) A CDL compiler and linker
+        check for errors and generate run-time data structures which
+        are used by a run-time parser to recognize commands, provide
+        context-sensitive help, provide command completion, and perform
+        range and error checks.</P>
+
+        <P>Because so much of the work is performed by the CLI
+        infrastructure, each command can be implemented simply; the
+        developer does not need to worry about being called in the
+        wrong mode or with invalid parameters. Because command
+        descriptions can be distributed among as many separate CDL
+        source files as desired, the infrastructure is revision-control
+        friendly and allows multiple developers to work on the CLI at
+        once without stepping on one-another&#39;s toes.</P>
+
+        <P>The generated program has the look and feel you&#39;d expect
+        from a mature CLI, including all of the features found in the
+        CLI for Cisco routers:</P>
+
+        <UL>
+            <LI>Command history and command-line editing.</LI>
+
+            <LI>Context-specific help - Press the question-mark key at
+            any time to see a list of legal next parameters, with
+            descriptions.)</LI>
+
+            <LI>Keyword completion - Type a partial keyword and press
+            the <TT>&lt;tab&gt;</TT> key. The rest of the keyword will
+            be entered automatically.</LI>
+
+            <LI>Modes - Each command can belong to one or more modes.
+            The command is not recognized (visible) in any other mode.
+            Modes can be designed with sub-modes which inherit all of
+            the commands of their parent modes.</LI>
+
+            <LI>Privilege - Each command can be assigned a set of
+            privilege attributes. A command may not be executed if the
+            user does not have sufficient privilege</LI>
+
+            <LI>Keyword abbreviations - Any keyword can be recognized
+            just be typing an unambiguous prefix (e.g.,
+            &quot;<TT>sh</TT>&quot; for
+            &quot;<TT>show</TT>&quot;).</LI>
+
+            <LI>Order-independent parameters - A command&#39;s syntax
+            can be specified such that a set of parameters can be
+            specified in any order. (e.g., &quot;<TT>run far
+            fast</TT>&quot; could also be typed &quot;<TT>run fast
+            far</TT>&quot;). The decision as to which parameters must
+            be specified in a specific order and which parameters are
+            order-independent is made by the developer on a per-command
+            basis.</LI>
+
+            <LI>Error checking - Before executing a command, the CLI
+            checks that the current mode is still valid (e.g. the
+            current interface card has not been disabled), the user has
+            sufficient privilege, and each parameter is within the
+            legal range, etc.. When possible, the user is alerted to
+            the error by displaying a caret under the offending word
+            along with an error message.</LI>
+        </UL>
+
+        <P>Features of the <B><BIG>CLI Power Tools</BIG></B> tool
+        kit:</P>
+
+        <UL>
+            <LI>Simple language for describing CLI commands. See the <A
+            HREF="../QuickOverview.html">Command Description Language
+            (CDL) Overview</A> (PDF format).</LI>
+
+            <LI>Revision-control friendly - Each command can be in a
+            separate source file, or related commands can be grouped
+            into a single source file.</LI>
+
+            <LI>Generated CLI is fast and memory-efficient - suitable
+            for embedded systems.</LI>
+
+            <LI>Can be ported to many different programming languages.
+            Please ask.</LI>
+        </UL>
+
+        <P><BIG>See also:</BIG></P>
+
+        <BLOCKQUOTE>
+            <P><A HREF="../QuickOverview.html">Command Description
+            Language (CDL) Overview</A> (PDF format)
+            <BR>
+            <A HREF="../WindRiver.html">Competitive Analysis: CLI Power
+            Tools vs. RapidControl for CLI</A></P>
+        </BLOCKQUOTE>
+
+        <H3>For more information:</H3>
+
+        <BLOCKQUOTE>
+            Visit the <STRONG>CLI Power Tools</STRONG> home page at <A
+            HREF="../index.html">
+            http://www.halpernwightsoftware.com/CLI</A> or
+            <BR>
+             Call Pablo Halpern at (603) 801-4558 or
+            <BR>
+             Email <A HREF=
+            "mailto:clipowertools@halpernwightsoftware.com?subject=CLI
+            Power Tools">clipowertools@halpernwightsoftware.com</A>
+        </BLOCKQUOTE>
+
+        <P CLASS="c5"><SMALL>Copyright 2002, 2003 Halpern-Wight
+        Software Inc. All rights reserved.</SMALL></P>
+    </BODY>
+</HTML>

@@ -1,0 +1,38 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-1252">
+<META NAME="Generator" CONTENT="Microsoft Word 97">
+<TITLE>Reconsidering the STL Allocator Model</TITLE>
+</HEAD>
+<BODY LINK="#0000ff">
+
+<H1>Reconsidering the STL Allocator Model</H1>
+<BIG>
+<P>Presented at C++ Connections in Las Vegas in November, 2005</P>
+</BIG>
+<BR/>
+<H2>Abstract</H2>
+
+<BIG>
+<P>Memory allocators wee originally added to the Standard Template
+Library (STL) for the purpose of supporting Intel x86 mixed-model
+(near and far) pointers and other non-flat memory models.  Most
+people, however, consider allocators to be a way to achieve
+type-specific memory allocation for generic containers, generally for
+improved efficiency.  This session will show that allocators, as
+defined in the STL, do not serve either purpose well.  This session
+will suggest specific refinements that require significant changes in
+the way allocators work but yield tremendous payoffs in the power and
+usability of allocators.  You’ll learn how these changes were
+merged with the original STL model and produced a working, effective
+memory allocation system that retains compatibility with the 1998
+standard.  These experiences are the basis for a proposed enhancement
+to the C++ Library for the next revision of the standard.</P>
+</BIG>
+
+<P><BIG><A HREF="CAP304.ppt">
+Click here to view or download the full PowerPoint &trade; presentation.
+</A></BIG></P>
+
+</BODY>
+</HTML>

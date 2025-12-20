@@ -1,0 +1,338 @@
+<HTML>
+    <HEAD>
+        <TITLE>CLI Power Tools vs. RapidControl for CLI</TITLE>
+        <META HTTP-EQUIV="Content-Type" CONTENT="text/html; 
+        charset=iso-8859-1">
+        <META NAME="Author" CONTENT="Pablo Halpern">
+        <META NAME="Keywords" CONTENT="Cisco CLI Cisco like command 
+        line interface development tool WindRiver RapidControl for
+        CLI">
+        <META NAME="Description" CONTENT="This white paper compares 
+        Halpern-Wight Software&#39;s CLI Power Tools to WindRiver&#39;s 
+        RapidControl for CLI based on our evaluation of WindRiver&#39;s \
+        offerings as of April, 2001. This is our opinion.">
+        <BASE TARGET="_top">
+<STYLE TYPE="text/css">
+ li { margin-bottom: 10pt; }
+  
+ p.c5 {text-align: center}
+ p.c4 {font-size: 70%; text-align: center}
+ h1 {text-align: center}
+ td.c2 {text-align:right}
+ td.c1 {text-align:left}
+</STYLE>
+    </HEAD>
+
+    <BODY>
+        <TABLE CLASS="subtext" WIDTH="100%">
+            <TR>
+                <TD CLASS="c1">Email: <A HREF= 
+                "mailto:clipowertools@halpernwightsoftware.com?subject=CLI 
+            	Power Tools">clipowertools@halpernwightsoftware.com</A></TD>
+
+                <TD CLASS="c2">Phone: +1 603-654-6474</TD>
+            </TR>
+        </TABLE>
+
+        <H1>Competitive Analysis: CLI Power Tools vs. RapidControl for
+        CLI</H1>
+
+        <P CLASS="c4">Updated <UpdateTime>07/10/2003</UpdateTime></P>
+
+        <H2>Introduction</H2>
+
+        <P>This white paper describes the advantages of Halpern-Wight
+        Software&#8217;s <A HREF="../index.html">CLI Power Tools</A> to
+        WindRiver&#8217;s RapidControl for CLI based on our evaluation
+        of WindRiver&#8217;s offerings as of April, 2001. The contents
+        of this white paper represents our opinion.</P>
+
+        <P>The purpose of both products is to simplify and accelerate
+        the development process for creating a command line interface
+        (CLI) for network-connected devices. In both products, a
+        development tool generates C or C++ code based on a
+        developer&#39;s description of the syntax and semantics of
+        commands, modes, etc.. The generated code is compiled and
+        linked with a run-time library to produce the final CLI. The
+        run-time library provides command-line editing, parsing, and
+        some error checking and can be hosted on a different platform
+        from the development tools (cross-compilation).</P>
+
+        <H2>Differences in Usage Model</H2>
+
+        <P>The development tools for the two products work on
+        substantially different usage models. CLI Power Tools was
+        initially created for a specific project. In the early stages
+        of that project, we considered using RapidControl for CLI and
+        rejected it based on our perception of deficiencies in the
+        usage model. Although developing a new tool cost more, we did
+        not regret the decision. For the following reasons, it is our
+        opinion that CLI Power Tools has the better usage model:</P>
+
+        <UL>
+            <LI>
+                <P><STRONG>Text files vs. GUI</STRONG>: The most
+                important difference between the products is the
+                mechanics of creating commands. CLI Power Tools uses a
+                traditional edit-compile cycle for defining commands.
+                Commands are created in the CDL language using a
+                conventional text editor (emacs, vi, notepad, etc.).
+                The CDL compiler and linker are used to generate C++
+                code, which is compiled and linked with the run-time
+                library into an executable image.</P>
+
+                <P>RapidControl for CLI uses a graphical tool called
+                the <EM>integration tool</EM> to define commands. The
+                user adds <EM>nodes</EM> to a <EM>command tree</EM> and
+                fills in dialog-box forms for parameters, code, etc.. A
+                command is then used to generate C code, which is
+                compiled and linked with the run-time library to create
+                an executable image.</P>
+
+                <P>Graphical interfaces can be handy, but we believe
+                that the RapidControl GUI gets in the way.
+                WindRiver&#8217;s GUI is not simply a wizard that gives
+                you a head start and then leaves you to your coding
+                tasks; it is the only practical way commands can be
+                created or modified. To define a new command, you must
+                go through a half-dozen dialog boxes or more. Modifying
+                a parameter can cause any code you entered to be lost,
+                so you must be careful to cut-and-paste your code into
+                a temporary file before making changes to the parameter
+                list. The process of creating and changing commands can
+                get tedious for large numbers of commands. (The Cisco
+                CLI has several hundred commands.)</P>
+
+                <P>CLI Power Tools requires that you learn the CDL
+                language. However, the language is small and example
+                files are provided which make the learning process
+                quick and easy. In our opinion, there is actually less
+                to learn this way than with the GUI.</P>
+            </LI>
+
+            <LI>
+                <P><STRONG>Independent command definitions vs. tree
+                structure:</STRONG> With CLI Power Tools each command
+                is defined independently; it is the job of the CDL
+                linker to reconcile different commands that share a
+                common prefix. The part of the CDL used to define a
+                command&#8217;s syntax resembles the way command
+                descriptions are found in Cisco (and other) user
+                manuals, e.g. square brackets designate optional
+                parameters, bars separate choices, etc.</P>
+
+                <P>The RapidControl integration tool displays a tree of
+                nodes. Commands with a common prefix share the same
+                branch of the tree, so each command is always created
+                in the context of all other commands. This can be seen
+                as an advantage in that it is impossible to create
+                inconsistencies that will need to be resolved later.
+                However, it is also somewhat artificial. When creating
+                a command set, it should be the tool&#8217;s job to
+                create the parse tree, not the user&#8217;s job. The
+                fact that the command, &quot;show ip ospf&quot;
+                consists of three nodes in a tree is of little interest
+                to the developer.</P>
+            </LI>
+
+            <LI>
+                <P><STRONG>Independent files vs. centralized
+                integration tool</STRONG>: With CLI Power Tools,
+                separate commands can be put in separate text files and
+                managed with any standard revision control system
+                (Clearcase, RCS, CVS, etc.). Several developers can
+                simultaneously edit unrelated command files with little
+                fear of tripping over one another.</P>
+
+                <P>RapidControl for CLI stores its command tree in a
+                large XML file. Only one person can edit the command
+                tree at a time. Although the XML file can be kept under
+                revision control, merging simultaneous changes from
+                several different developers is likely to be a
+                nightmare, if it is even possible. XML may be text, but
+                it is not easy to make sense of it in a merge window.
+                Although RapidControl allows for some independent
+                development, the integration is still the job of an
+                individual using the graphical tool.</P>
+            </LI>
+
+            <LI>
+                <P><STRONG>True human-readable files vs. XML:</STRONG>
+                CLI Power Tools files are handcrafted, can be annotated
+                with comments, and are as readable as the developer
+                wants to make them. WindRiver claims that their
+                RapidControl project file is human-readable because it
+                is stored as XML and XML is a text format. We consider
+                this characterization to be a stretch. XML is designed
+                to be written by computers and read by computers.
+                Although a person could muddle through it, XML is not
+                designed to be human readable. (If you doubt this, try
+                viewing the source of a Web page containing a table.
+                The HTML format is similar to XML.) If fact, we
+                consider any code generated by a software tool to be
+                something you&#8217;d rather not have to read.</P>
+
+                <P>The consequence of WindRiver&#8217;s use of XML is
+                that revision control is more difficult &#8211;
+                differences between versions are hard to understand and
+                merging changes made by different programmers would be
+                error-prone, at best.</P>
+            </LI>
+        </UL>
+
+        <H2>CLI Power Tools Features</H2>
+
+        <P>The features listed below are unique to CLI Power Tools and
+        are not provided by RapidControl for CLI.</P>
+
+        <UL>
+            <LI><STRONG>Enhanced Cisco-compatible syntax:</STRONG> When
+            people speak of a <EM>Cisco-compatible</EM> command set,
+            they are usually referring to the ability to run Cisco
+            scripts with few, if any, modifications. CLI Power Tools
+            allows for the construction of a Cisco-compatible command
+            set (as does RapidControl, we think), but also allows some
+            nice backward-compatible enhancements, such as the ability
+            to run a <EM>show</EM> command without leaving the current
+            configuration mode.</LI>
+
+            <LI><STRONG>Guard conditions:</STRONG> Sometimes a command
+            cannot be executed because of the state of the system. For
+            example, a command that configures Ethernet cards cannot be
+            run if there are no Ethernet cards in the box. CLI Power
+            Tools allow you to create <EM>guard conditions</EM> that
+            prevent the command from executing or even from showing up
+            in help.</LI>
+
+            <LI><STRONG>Mode preconditions:</STRONG> Sometimes the
+            state of the system can change such that the current
+            command mode becomes invalid. If, for example, while you
+            are configuring a card, that card were physically removed
+            from the system, you would like to be notified in a
+            friendly way. CLI Power Tools lets you define preconditions
+            for modes, which are checked prior to executing any command
+            within that mode. If the precondition fails, the command is
+            disallowed with a human-readable error message and the mode
+            is exited.</LI>
+
+            <LI><STRONG>Macros:</STRONG> CLI Power Tool&#8217;s macro
+            capability allows you to define a segment of syntax once
+            and re-use it in many different commands. If a macro is
+            changed, all commands that use that macro will change
+            accordingly. RapidControl allows cutting-and-pasting of
+            command nodes, but does not automatically propagate
+            changes.</LI>
+
+            <LI><STRONG>Mode-transition Commands:</STRONG> In CLI Power
+            Tools, defining a mode is separate from defining the
+            command(s) that enter that mode. This allows a mode to be
+            selected using program logic based, for example, on a
+            command parameter or the state of the system.</LI>
+
+            <LI><STRONG>Command Generation:</STRONG> CLI Power Tools
+            allows you to attach a piece of code to each command which,
+            when called, will reproduce the original user input based
+            on the current state of the system - in effect telling you
+            what command would get you to the current state. This is
+            very handy for implementing the &#8220;<TT>show
+            config</TT>&#8221; command in Cisco&#8217;s IOS.</LI>
+
+            <LI><STRONG>Direct Access to Command Parameters:</STRONG>
+            When writing the code to implement a command in CLI Power
+            Tools, the developer sees each parameter as a simple
+            variable of the appropriate type containing a the value
+            specified by the user. By way of contrast, RapidControl for
+            CLI requires the use of arcane parameter retrieval
+            functions combined with type-conversion functions.</LI>
+
+            <LI><STRONG>True Custom Data Types:</STRONG> Each
+            user-defined CLI data type is mapped to a user-specified
+            C/C++ type. There is no need to call conversion functions
+            within the execute code. In addition, the syntax of
+            user-defined types can affect how the parser works; you are
+            not limited to words delimited by white space.</LI>
+        </UL>
+
+        <H2>RapidControl for CLI Features</H2>
+
+        <P>Clearly, this white paper is focused on the things that, in
+        our opinion, make CLI Power Tools a superior choice for most
+        CLI projects. In fairness to WindRiver, however, we will point
+        out some of features in RapidControl for CLI that are absent in
+        our own offering. See WindRiver&#8217;s marketing materials for
+        more information.</P>
+
+        <UL>
+            <LI><STRONG>More Mature Offering:</STRONG> RapidControl for
+            CLI has been around longer and has a much larger company
+            behind it.</LI>
+
+            <LI><STRONG>Integrated solution:</STRONG> RapidControl for
+            CLI is a single <EM>blade</EM> on the <EM>RapidControl
+            Backplane (RCB)</EM>. Other blades include a small web
+            server, Java server, and SNMP integration package. All of
+            the blades can share information through the RCB. Whether
+            this benefits you or not depends on your overall
+            project.</LI>
+
+            <LI><STRONG>Data Model Support:</STRONG> The RCB contains a
+            repository of <EM>RapidMarks</EM> &#8211; data items that
+            provide user-specified set/get logic. The RapidMarks
+            provide a uniform way for all the blades on the RCB to
+            access data and underlying hardware functionality. Their
+            <EM>MibWay</EM> product (available at extra cost) creates a
+            connection between RapidMarks and SNMP Mib variables.</LI>
+        </UL>
+
+        <H2>Price</H2>
+
+        <P>It would be inappropriate to quote prices for either product
+        here, as price information is quickly outdated.</P>
+
+        <P>In general terms, however:</P>
+
+        <UL>
+            <LI>RapidControl for CLI without any consulting is about
+            twice as expensive as CLI Power Tools, which includes some
+            consulting to help you customize the tool for your
+            project.</LI>
+
+            <LI>WindRiver charges royalties for the distribution of the
+            run-time libraries. We do not.</LI>
+
+            <LI>For command line interfaces with more than 30 or 40
+            commands, either product will save you money vs. starting
+            from scratch. We&#39;ve seen CLI Power Tools save over 80%
+            of the resources needed to implement 300 or more
+            commands.</LI>
+        </UL>
+
+        <H2>Conclusion</H2>
+
+        <P>CLI Power Tools offers significant advantages over
+        RapidControl for CLI. Key among these advantages are efficiency
+        in creating and modifying commands and integrating commands
+        created by multiple developers. Most developers will find the
+        CLI Power Tools usage model to more natural and comfortable.
+        For moderate to large command-line interfaces, CLI Power Tools
+        can save significant amounts of time and money.</P>
+
+        <H3>For more information:</H3>
+
+        <BLOCKQUOTE>
+            Visit the <STRONG>CLI Power Tools</STRONG> home page at <A
+            HREF="../index.html">
+            http://www.halpernwightsoftware.com/CLI</A> or
+            <BR>
+             Call Pablo Halpern at (603) 654-6474 or
+            <BR>
+             Email <A HREF= 
+            "mailto:clipowertools@halpernwightsoftware.com?subject=CLI 
+            Power Tools">clipowertools@halpernwightsoftware.com</A>
+        </BLOCKQUOTE>
+
+        <P CLASS="c5"><SMALL>Copyright 2002, 2003 Halpern-Wight
+        Software Inc. All rights reserved.</SMALL></P>
+    </BODY>
+</HTML>
+

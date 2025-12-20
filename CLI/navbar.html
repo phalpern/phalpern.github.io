@@ -1,0 +1,59 @@
+<html>
+<head>
+  <title>navbar</title>
+  <base target="_top">
+  <META HTTP-EQUIV="Content-Script-Type" CONTENT="text/javascript">
+
+  <link href="../navbar.css" rel="stylesheet" type="text/css">
+
+<script type="text/javascript">
+<!--
+function printFriendly() {
+    top.location.href=parent.frames["main"].location.href;
+}
+// -->
+
+</script>
+
+</head>
+<body>
+
+<p><a href="../index.html">Halpern-Wight Home</a></p>
+<p><a href="../resumes/resume.html">Resume</a></p>
+<p><a href="../CLI/CLIPowerTools.html">CLI Power Tools</a></p>
+<div class=sublink>
+<p class=sublink><a href="ProductOverview.html">Product Overview</a></p>
+<p class=sublink><a href="QuickOverview.html">Overview of CDL (PDF)</a></p>
+<p class=sublink><a href="Description.html">Product Description</a></p>
+<p class=sublink><a href="WindRiver.html">Competitive Analysis</a></p>
+<p class=sublink><BR><a href="ContactUs.html">Contact Us</a></p>
+</div>
+
+<p><a href="../stdlib-scratch/index.html">Book: <i>
+The C++ Standard Library from Scratch</i></a></p>
+
+<P></P>
+
+<!-- Neither the <BUTTON> tag nor the <INPUT type=button> tag support word-wrap
+     of the button contents. So we create a box that looks and acts like a button
+	 by using border styles and click event handling.
+	 -->
+<TABLE CLASS="pseudoButton" onclick='printFriendly()'><TR><TD>
+	<A href="javascript:printFriendly()" onmousedown='printFriendly()'>
+		Printer-friendly Version
+	</A>
+</TD></TR></TABLE>
+
+<!-- On browsers that do support <BUTTON>, this is simpler, but doesn't do word-wrap:
+<p><button class="print" onclick='printFriendly()'>Printer Friendly Version</button></p>
+-->
+
+<!-- Netscape 4.x doesn't support the <BUTTON> tag, so this would work, but without word-wrap:
+<form>
+	<input class="print" type=button onclick='printFriendly()'
+	value="Printer-friendly Version">
+</form>
+-->
+
+</body>
+</html>

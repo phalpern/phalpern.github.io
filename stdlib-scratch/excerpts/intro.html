@@ -1,0 +1,591 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="subject" content="Introduction">
+   <meta name="Template" content="C:\Program Files\Microsoft Office\Templates\Company\Alt Mcpglobl.dot">
+   <meta name="GENERATOR" content="Mozilla/4.5 [en] (WinNT; I) [Netscape]">
+   <title>Introduction</title>
+</head>
+<body text="#000000" bgcolor="#FFFFFF">
+
+<center>
+<h1>The C++ Standard Library from Scratch</h1></center>
+<p>What follows is the complete introduction to <i>The C++ Standard Library
+from Scratch</i>, by Pablo Halpern. Please read this <a href="disclaimer.html">disclaimer</a>
+from Que. For more information, please visit <a href="../index.html"><i>The
+C++ Standard Library from Scratch</i> home page</a>.</p>
+<p>This chapter is also available in a
+<a href="http://science.webhostinggeeks.com/c-standardna-biblioteka">
+  Serbo-Croatian language translation</a></b>
+thanks to the
+<a href="http://webhostinggeeks.com">WHG Team</a>.</p>
+<p><b><font face="Helvetica"><font size=+2>Introduction</font></font></b>
+<blockquote>
+<blockquote>&nbsp;
+<table BORDER CELLPADDING=2 WIDTH="50%" >
+<tr>
+<td WIDTH="100%" BGCOLOR="#FFFF00" bordercolor="#000000"><b><font face="Helvetica"><font size=+1>In
+this Chapter</font></font></b>
+<ul>
+<li>
+<i><font face="Palatino"><a href="#WhatMakesDifferent">What Makes This
+Book Different?</a></font></i></li>
+
+<li>
+<i><font face="Palatino"><a href="#WhyLearn">Why Should I Learn the C++
+Standard Library?</a></font></i></li>
+
+<li>
+<i><font face="Palatino"><a href="#WhatTools">What Tools Do I Need?</a></font></i></li>
+
+<li>
+<i><font face="Palatino"><a href="#conventions">Conventions Used in This
+Book</a></font></i></li>
+
+<li>
+<i><font face="Palatino"><a href="#GettingSupport">Getting Support</a></font></i></li>
+</ul>
+</td>
+</tr>
+</table>
+</blockquote>
+</blockquote>
+<a NAME="WhatMakesDifferent"></a>
+<p><b><font face="Helvetica"><font size=+1>What Makes This Book Different?</font></font></b>
+<p><font face="Palatino">This book is different from any primer on this
+topic <i>ever</i> written. Here's the difference: All other programming
+books start by teaching you simple skills which build in difficulty, adding
+skill on skill as you go. When you've learned all the skills, the books
+then demonstrate what you can do: a sample program.</font>
+<p><font face="Palatino"><i>This</i> book does not start with a list of
+classes and functions; it starts with a project. You begin by analyzing
+and designing the project and then you implement that design. Standard
+library features are taught in the context of implementation; first you
+understand what you are trying to accomplish, and then you learn the skills
+and library features needed to get the job done.</font>
+<p><b><font face="Helvetica">Learning the Standard Library Doesn't Have
+to Be Difficult</font></b>
+<p><font face="Palatino">Many people find the C++ Standard Library to be
+intimidating. I believe this is because most books and courses focus on
+the set of features supplied by the library, rather than on the problem
+these features help you solve. The C++ Standard Library is so large that
+trying to learn it this way is like trying to learn French by memorizing
+a French dictionary.</font>
+<p><font face="Palatino">There are two ways to learn to speak a foreign
+language. One way is to memorize dozens of vocabulary words and practice
+declension of verbs. The other is to go to the country and interact with
+native speakers. Different people learn differently, but I can tell you
+that in my experience a week in France is worth two years in the classroom.</font>
+<p><font face="Palatino">If I were going to teach you the C++ Standard
+Library and we worked together, I would not hand you a book at all. I'd
+sit down with you and we'd write a program together. Along the way, I'd
+teach you what you need to know, occasionally giving you short pieces to
+read to flesh out your understanding.</font>
+<p><font face="Palatino">That is exactly how this book works: we'll sit
+down together and write a program, and along the way I'll teach you what
+you need to know. From the very first page, you will focus on understanding
+the problem you are trying to solve, and designing a solution, rather than
+on a list of features.</font>
+<br>&nbsp;
+<br>&nbsp;
+<table BORDER=0 CELLSPACING=7 WIDTH="100%" BGCOLOR="#FFFFFF" >
+<tr>
+<td VALIGN=TOP><img SRC="Note.gif" ALT="Note" height=25 width=72 align=TEXTTOP></td>
+
+<td VALIGN=TOP BGCOLOR="#D5D500"><font face="Arial">Because this book might
+be the first book you read after learning C++, I have included a number
+of excursions that review C++ concepts. If you are an old hand at C++ programming,
+simply skip these excursions.</font></td>
+</tr>
+</table>
+
+<p><b><font face="Helvetica">Learning to Make Choices Among Library Constructs</font></b>
+<p><font face="Palatino">One drawback of the other teaching approaches
+is that you get bombarded with a set of features with little guidance on
+how to choose among them. Because you are working through a real program,
+I can explain alternative ways of solving a problem and describe why we
+choose a particular solution. Returning to the foreign language analogy,
+you will learn not only the legal way to use library constructs, but the
+<i>idiomatic</i>
+use of those constructs.</font>
+<p><img SRC="Geek.gif" ALT="Geek Speak" height=39 width=44 align=LEFT><font face="Palatino">An
+<i>Idiom</i>
+is a customary way of using a programming construct or feature. The meaning
+of an idiomatic construct is understood as a whole, without having to analyze
+the individual parts.</font>
+<p><font face="Palatino">Using idioms reduces the amount of thinking you
+have to do and it makes your code easier to maintain by other people who
+understand the idioms.</font>
+<p><a NAME="WhyLearn"></a><b><font face="Helvetica"><font size=+1>Why Should
+I Learn the C++ Standard Library?</font></font></b>
+<p><font face="Palatino">The official standard for the C++ language is
+a 776-page long document (ISO/IEC 14882, 1998). About half of that document
+is devoted to the library of functions and classes that are provided with
+standard-conforming compilers. If you use C++ without understanding the
+Standard Library, you know only half the story.</font>
+<br>&nbsp;
+<br>&nbsp;
+<table BORDER=0 CELLSPACING=7 WIDTH="100%" BGCOLOR="#FFFFFF" >
+<tr>
+<td VALIGN=TOP><img SRC="Tip.gif" ALT="Tip" height=25 width=72 align=TEXTTOP></td>
+
+<td VALIGN=TOP BGCOLOR="#D5D500"><font face="Arial">If you do not already
+know how to program in C++, put this book down right now. Run (do not walk)
+to the store where you bought this book and buy Jesse Liberty's <i>C++
+From Scratch</i> (ISBN: 0-7897-2079-5). When you are finished reading <i>C++
+From Scratch</i>, you can resume reading this book where you left off.</font></td>
+</tr>
+</table>
+
+<p><font face="Palatino">A large part of programming involves mundane tasks
+such as managing collections of objects, manipulating text strings, searching,
+sorting, and performing formatted input and output. Though conceptually
+simple, many of these tasks are tedious and some are hard to get right.
+Do you really want to implement a sort algorithm yourself? What are the
+chances of introducing a subtle bug that only shows up when, say, sorting
+arrays that contain three elements with the same value?</font>
+<p><font face="Palatino">Proper use of the library increases the portability
+of your programs to different compilers and operating systems. The use
+of standard library classes for data interchange is becoming increasingly
+common as more and more third-party libraries use standard classes in their
+interfaces.</font>
+<p><font face="Palatino">By learning about the Standard Library, you can
+avoid reinventing the wheel. The features of the Standard Library are there
+to make your programs easier to write and more robust. The people who maintain
+your code will thank you for using well-understood facilities instead of
+inventing your own. (Okay, they might not actually thank you, but they'll
+be grateful inside and at least they won't curse you.)</font>
+<p><b><font face="Helvetica">What Is the C++ Standard Library?</font></b>
+<p><font face="Palatino">The C++ Standard Library is really two things.
+In the classical sense, it is a set of types and functions, which come
+ready-to-use with a <i>standards-conforming compiler</i>.</font>
+<p><img SRC="Geek.gif" ALT="Geek Speak" height=39 width=44 align=LEFT><font face="Palatino">A
+<i>library</i>
+is a set of reusable components (classes, functions, macros, and so on)
+intended to help a programmer perform a set of tasks. A library can be
+special purpose (for example, Internet programming) or general purpose
+(for example, sorting).</font>
+<p><img SRC="Geek.gif" ALT="Geek Speak" height=39 width=44 align=LEFT><font face="Palatino">A
+<i>standard
+library</i> is a library whose contents and behavior are described in a
+document issued by a standards body (for example, the International Standards
+Organization, ISO). Unless otherwise stated, "standard library" is used
+here as an easier way to say "C++ Standard Library" -- that is, the library
+described in the ISO C++ standard.</font>
+<p><img SRC="Geek.gif" ALT="Geek Speak" height=39 width=44 align=LEFT><font face="Palatino">A
+<i>standards-conforming
+compiler</i> is a compiler and library that correctly implements the behavior
+described in the ISO standard for the C++ language and library.</font>
+<p><font face="Palatino">But the C++ Standard Library is also an <i>extensible
+framework</i> for creating additional library components. Most of your
+work with the Standard Library will not involve creating new components.
+But for those 10% of the cases where new components are needed, the power
+of the library proves to be extraordinary. It is the ability to create
+new library components that distinguishes skilled library users from novices.
+With this book, I hope to move you a substantial distance down the road
+towards being a skilled library user.</font>
+<p><font face="Helvetica">Parts of the Standard Library</font>
+<p><font face="Palatino">Ten smaller libraries together comprise the C++
+Standard Library. They are</font>
+<ol>
+<li>
+<font face="Palatino">The Language Support Library, which contains types
+and functions directly related to the language and compiler. For example,
+there are constants that define the range and precision of floating point
+numbers and functions for exiting a program.</font></li>
+
+<li>
+<font face="Palatino">The Diagnostics library, which contains exception
+classes and other facilities for detecting and reporting errors.</font></li>
+
+<li>
+<font face="Palatino">The General Utilities Library, which contains useful
+facilities not easily categorized into one of the other libraries.</font></li>
+
+<li>
+<font face="Palatino">The Strings Library, for manipulating text strings.</font></li>
+
+<li>
+<font face="Palatino">The Localization Library, for handling international
+character sets and culturally specific formatting of things such as time,
+date, and currency.</font></li>
+
+<li>
+<font face="Palatino">The Containers Library, which provides generic containers
+for collecting objects.</font></li>
+
+<li>
+<font face="Palatino">The Iterators Library, for traversing items in a
+collection.</font></li>
+
+<li>
+<font face="Palatino">The Algorithms Library, which implements many commonly
+used data-manipulation algorithms.</font></li>
+
+<li>
+<font face="Palatino">The Numerics Library, which provides complex numbers,
+special numeric array types, and numeric algorithms.</font></li>
+
+<li>
+<font face="Palatino">The Input/Output Library, for performing portable
+formatted and unformatted input and output to files and other devices.</font></li>
+</ol>
+<font face="Helvetica">Which Parts Are Really Useful?</font>
+<p><font face="Palatino">The ten libraries aren't equally useful. Some
+libraries you will use every day, whereas others you might never use. This
+book concentrates on the five libraries that I consider most useful in
+day-to-day use: Strings, Containers, Iterators, Algorithms and Input/Output.</font>
+<p><font face="Palatino">Conversely, not everything that could be useful
+was included in the Standard Library. The ISO (International Standards
+Organization) committee responsible for creating the International C++
+Language Standard reviewed hundreds of proposals for features that could
+have been added to the standard. They attempted to include only those features
+that are of the most general use and that had well-constructed proposals.</font>
+<p><font face="Palatino">In retrospect, many generally useful features
+were omitted, whereas other less generally useful features were included.
+As we go along, I will point out some of the more glaring omissions. I
+won't bore you with all the obscure features that are hardly ever used.
+In picking and choosing, I am in a sense second-guessing the ISO committee
+members that slaved over the standard for so long. This is my prerogative
+as an author with 20/20 hindsight and I make no apologies.</font>
+<p><font face="Helvetica">What About Those Library Features I Used to Use
+in C?</font>
+<p><font face="Palatino">If you programmed in C before learning C++, you
+are probably familiar with a number of library functions that are part
+of the C Standard Library. These functions -- such as <u>printf</u>, <u>strcpy</u>,
+<u>atoi</u>,
+and so on -- are still available to you in the C++ Standard Library and
+you will explore a number of them in this book. Some parts of the C library,
+such as the input/output functions, are rarely used in C++ because more
+sophisticated components are available in the C++ library. Other parts
+of the C library, however, continue to be valuable for writing C++ programs.</font>
+<p><font face="Palatino">The C Standard Library underwent a few changes
+when it was incorporated into the C++ Standard Library. To begin with,
+the header files have changed names. For example, <u>stdio.h</u> was renamed
+to <u>cstdio</u>. The rule is the same for the other headers: Remove the
+<u>.h</u>
+and put a lowercase <u>c</u> in front.</font>
+<p><font face="Palatino">Taking advantage of the capability to overload
+function names in C++, some functions were changed to make better use of
+<u>const</u>.
+For example, the C function</font>
+<p><font face="Courier"><font size=-1>char* strchr(const char* s, char
+c);</font></font>
+<p><font face="Palatino">has been replaced in C++ with the following two
+overloaded functions:</font>
+<p><font face="Courier"><font size=-1>const char* strchr(const char* s,
+char c);</font></font>
+<p><font face="Courier"><font size=-1>char* strchr( char* s, char c);</font></font>
+<p><font face="Palatino">The first form searches for a character within
+a array of <u>const</u> characters and returns a <u>const</u> pointer to
+the first one. The second form works for a non-<u>const</u> array and returns
+a non-<u>const</u> pointer. This closes a <u>const</u>-safety hole in the
+C version of the function, which returned a non-<u>const</u> pointer into
+a potentially <u>const</u> array.</font>
+<p><font face="Palatino">Overloading also provides multiple versions of
+floating-point math functions for the different size floating-point number
+types. For example, the C function</font>
+<p><font face="Courier"><font size=-1>double sin(double);</font></font>
+<p><font face="Palatino">has been replaced in C++ with</font>
+<p><font face="Courier"><font size=-1>float sin(float);</font></font>
+<p><font face="Courier"><font size=-1>double sin(double);</font></font>
+<p><font face="Palatino">and</font>
+<p><font face="Courier"><font size=-1>long double sin(long double);</font></font>
+<p><font face="Palatino">Finally, all components inherited from the C library
+except macros have been put into the <u>std</u> namespace. (The macros
+from the C library are still available but, since macros do not obey scoping
+rules, they cannot be assigned to a namespace.) We delve further into the
+<u>std</u>
+namespace in the next chapter.</font>
+<p><b><font face="Helvetica">Is the Standard Library the Same as STL?</font></b>
+<p><font face="Palatino">STL stands for <i>Standard Template Library</i>.
+The term refers to a set of <i>interfaces</i> and components developed
+by Alexander Stepanov and others working at AT&amp;T Bell Laboratories
+and Hewlett-Packard Research Laboratories. Stepanov's goal was to realize
+the potential of generic programming to create a standard set of reusable
+components. Today, the STL comprises the Containers, Iterators, Algorithms,
+and some of the General Utilities libraries within the C++ Standard Library.
+In other words, STL is only a part of the Standard Library, albeit a very
+important part. Much of this book is devoted to understanding and using
+STL components.</font>
+<p><img SRC="Geek.gif" ALT="Geek Speak" height=39 width=44 align=LEFT><font face="Palatino">An
+<i>interface</i>
+is any formal description of how a programmer or user gains access to the
+capabilities of a function, class, macro, or any other component of the
+system. Interface is an abstract programming concept, not a specific keyword
+C++ construct.</font>
+<p><img SRC="Geek.gif" ALT="Geek Speak" height=39 width=44 align=LEFT><font face="Palatino">A
+<i>class
+interface</i> describes the set of public functions, types, and variables
+in a class.</font>
+<br>&nbsp;
+<p><img SRC="Geek.gif" ALT="Geek Speak" height=39 width=44 align=LEFT><font face="Palatino">A
+<i>function
+interface</i> describes the set of argument types and the return type for
+a function (i.e., its <i>prototype</i>).</font>
+<br>&nbsp;
+<p><font face="Helvetica">Design Goals of the STL</font>
+<p><font face="Palatino">When the main ideas of the STL were presented
+to the C++ standardization committee in late 1993, they were received enthusiastically.
+So rare was it that a proposal could satisfy so many goals simultaneously.
+The STL successfully achieved the following design goals:</font>
+<ul>
+<li>
+<font face="Palatino"><b>General usefulness </b>When learned, STL components
+become part of the bread-and-butter of everyday programming. The STL uses
+templates to create components that can be applied to a wide range of programming
+problems.</font></li>
+
+<li>
+<font face="Palatino"><b>Simplicity </b>Although STL is not without complexity,
+the most commonly used components have small, easy-to-learn interfaces.</font></li>
+
+<li>
+<font face="Palatino"><b>Efficiency </b>The use of templates enables the
+library to be very efficient in runtime processing. Templates translate
+a general-purpose component at compile-time into a special-purpose implementation.
+In addition, the STL components provide specific performance guarantees,
+enabling you to choose the most efficient component for your task.</font></li>
+
+<li>
+<font face="Palatino"><b>Flexibility </b>The components of the STL are
+small and designed to be combined in infinite combinations. You can often
+change your mind and substitute one component for another with very little
+ripple effect on the code.</font></li>
+
+<li>
+<font face="Palatino"><b>Extensibility </b>The STL is not simply a bunch
+of components, but a set of <i>interfaces</i>. You can add new components
+to the framework merely by adopting the STL interfaces. Your new component
+will work seamlessly with the existing ones.</font></li>
+</ul>
+<font face="Palatino">If you have been hearing a lot about the STL and
+were wondering what all of the excitement was about, now you know. Anything
+that can promise this much is bound to cause excitement.</font>
+<p><a NAME="WhatTools"></a><b><font face="Helvetica"><font size=+1>What
+Tools Do I Need?</font></font></b>
+<p><font face="Palatino">Theoretically, you could read this book without
+ever touching a computer. However, in order to get the most out of it,
+you're going to want to compile some or all of the sample code in the book,
+perhaps modifying it to experiment with the library features. I also suggest
+that you try to solve the exercises organized by chapter on the support
+web site, <a href="http://www.halpernwightsoftware.com/stdlib-scratch/support.html">http://www.halpernwightsoftware.com/stdlib-scratch/support.html</a>.</font>
+<p><font face="Palatino">In order to compile and run the programs in this
+book, you will need a text editor or Integrated Development Environment
+(IDE), a modern C++ compiler, and the standard library itself.</font>
+<p><b><font face="Helvetica">What Compilers Will Work?</font></b>
+<p><font face="Palatino">This book is based on the C++ language as standardized
+by the International Standards Organization (ISO) in July 1998. Theoretically,
+therefore, any standards-conforming compiler will work equally well. As
+of this writing, however, standards-conforming compilers are rare. Compilers
+vary as to which features of Standard C++ they have not yet implemented.
+Some compilers are so hopelessly behind that they cannot effectively support
+a commercial-grade version of the Standard Library. You should avoid any
+compiler that predates the December 1996 draft of the ISO standard. In
+fact, few compilers from before 1998 are usable with the standard library.</font>
+<p><font face="Palatino">The examples in this book have been tested with
+the Microsoft Visual C++ 6.0 compiler on Windows and the GNU egcs 1.1.2
+compiler on UNIX/Linux. The egcs compiler is the next-generation of the
+GNU compiler and is substantially closer to ISO conformance than the older
+GNU compiler. It is available for free on the Web at <a href="http://egcs.cygnus.com/">http://egcs.cygnus.com/</a>.
+Note that the egcs compiler has been improved and is now called GCC 2.95.</font>
+<p><font face="Palatino">The other popular compiler that should work for
+Microsoft Windows is the Borland compiler that comes with C++ Builder 4.0.
+(This is not the Borland C++ 4.0 compiler, which is quite old and insufficient
+for supporting the standard library.) On UNIX and other operating systems,
+the compilers from KAI and those derived from the Edison Group compiler
+have received favorable reviews for standards conformance.</font>
+<p><font face="Palatino">Because Sun's Solaris operating system is a popular
+software development platform, it is worth singling out the SunPro 5.0
+compiler as another compiler you can use for programming with the standard
+library. The previous version of the SunPro compiler, 4.2, is marginally
+usable for standard library programming with some workarounds.</font>
+<p><font face="Helvetica">Compiler Notes</font>
+<p><font face="Palatino">Even among the compilers listed earlier, there
+are errors, flaws, and idiosyncrasies that differ from compiler to compiler.
+In cases where I can identify these idiosyncrasies, I will flag them for
+you using a note that looks like this:</font>
+<br>&nbsp;
+<br>&nbsp;
+<table BORDER=0 CELLSPACING=7 WIDTH="100%" BGCOLOR="#FFFFFF" >
+<tr>
+<td VALIGN=TOP><img SRC="Note.gif" ALT="Note" height=25 width=72 align=TEXTTOP></td>
+
+<td VALIGN=TOP BGCOLOR="#D5D500"><font face="Arial"><b>Compiler Note:</b>
+The XYZ compiler fails to recognize the <u>#include</u> directive. The
+work around is to concatenate all your source files and the standard library
+headers into a single, huge, monstrosity.</font></td>
+</tr>
+</table>
+
+<p><font face="Palatino">Some compiler notes will apply to a whole class
+of compilers (for example, pre-1998 compilers), whereas others will apply
+to a specific compiler. The examples in this book have not been compiled
+on every compiler on the market, or even on every compiler mentioned here.
+Take advantage of the tips in the Compiler Notes, but know that I have
+certainly missed many opportunities for enlightening you on potential compiler
+problems. If my Compiler Notes seem to be picking on the Microsoft compiler,
+it is only because it is the one on which I have done the most testing.
+The fact that Microsoft owns most of the world (or at least most of the
+market) also makes their compiler a reasonable subject for thorough coverage.</font>
+<p><b><font face="Helvetica">Where Do I Get the Standard Library?</font></b>
+<p><font face="Palatino">Most of the compilers mentioned earlier come with
+their own implementation of the C++ Standard Library.</font>
+<br>&nbsp;
+<br>&nbsp;
+<table BORDER=0 CELLSPACING=7 WIDTH="100%" BGCOLOR="#FFFFFF" >
+<tr>
+<td VALIGN=TOP><img SRC="Note.gif" ALT="Note" height=25 width=72 align=TEXTTOP></td>
+
+<td VALIGN=TOP BGCOLOR="#D5D500"><font face="Arial"><b>Compiler Note:</b>
+The version of the Standard Library that comes with the Microsoft Visual
+C++ 6.0 and earlier compilers has some known bugs, at least one of which
+would prevent you from compiling the code in this book. Dinkumware, Ltd.,
+the company that supplies the library to Microsoft, has fixed many of these
+bugs. A list of fixes is available on the Internet at <a href="http://www.dinkumware.com/vc_fixes.html">http://www.dinkumware.com/vc_fixes.html</a>.
+You can also purchase a complete, updated library through this Web site.</font></td>
+</tr>
+</table>
+
+<p><font face="Palatino">Some of the older compilers (for example, the
+SunPro 4.2 compiler) provide an implementation of streams but not of the
+STL or standard string class. You can get implementations for these parts
+of the library from various commercial and free sources, including those
+listed here.</font>
+<p><font face="Helvetica">Standard Template Library Adaptation Page</font>
+<p><font face="Courier"><font size=-1><a href="http://www.stlport.org/">http://www.stlport.org/</a></font></font>
+<p><font face="Palatino">The STLport project provides a port of the STL
+and standard string class for many different compilers at no cost. It is
+built on the commercial-grade SGI version of the library and should probably
+be the first place you look. Also contains links to other good sites.</font>
+<p><font face="Helvetica">ObjectSpace, Inc.</font>
+<p><font face="Courier"><font size=-1><a href="http://www.objectspace.com">http://www.objectspace.com</a></font></font>
+<p><font face="Palatino">ObjectSpace sells a number of class libraries
+for C++ and Java. Their very-portable version of the STL and strings library
+(Standards&lt;Toolkit>) comes bundled with many of their C++ class libraries.
+ObjectSpace used to provide the library for free downloading, though that
+no longer seems to be the case.</font>
+<p><font face="Helvetica">Rogue Wave, Inc.</font>
+<p><font face="Courier"><font size=-1><a href="http://www.roguewave.com/">http://www.roguewave.com/</a></font></font>
+<p><font face="Palatino">Like ObjectSpace, Rogue Wave sells a number of
+class libraries for C++, including a standard library. Beware that most
+of Rogue Wave's other products do not directly use the standard library,
+but instead use a proprietary library called Tools.h++, which is largely
+a set of <i>wrapper </i>classes designed to give STL classes an older-style,
+more limited interface. The Rogue Wave version of the standard library
+is bundled with a number of compilers.</font>
+<p><img SRC="Geek.gif" ALT="Geek Speak" height=39 width=44 align=LEFT><font face="Palatino">A
+<i>wrapper</i>
+is a class or function intended only to provide a different interface to
+another class or function and which provides little new functionality.</font>
+<p><a NAME="conventions"></a><b><font face="Helvetica"><font size=+1>Conventions
+Used in This Book</font></font></b>
+<p><font face="Palatino">Some of the unique features in this series include
+the following:</font>
+<p><img SRC="Geek.gif" ALT="Geek Speak" height=39 width=44 align=LEFT><font face="Palatino">The
+<i>Geek
+Speak</i> icon in the margin indicates the use of a new term. New terms
+will appear in the paragraph in <i>italics</i>.</font>
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<table BORDER CELLSPACING=7 WIDTH="100%" BGCOLOR="#FFFFFF" >
+<tr>
+<td VALIGN=TOP><img SRC="Pronounc.gif" ALT="How too pro nounse' it" height=36 width=104 align=TEXTTOP></td>
+
+<td VALIGN=TOP BGCOLOR="#FFFFFF"><font face="Arial"><b>How To Pronounce
+It </b>You'll see an icon set in the margin next to a box that contains
+a technical term and how it should be pronounced. For example, "<u>cin</u>
+is pronounced <i>see-in</i>, and <u>cout</u> is pronounced <i>see-out</i>."</font></td>
+</tr>
+</table>
+
+<p><img SRC="Excurs.gif" ALT="Excursion" height=79 width=215>
+<br>
+<hr>
+<blockquote><font face="Helvetica"><font size=+0>These are short diversions
+from the main topic being discussed, and they offer an opportunity to flesh
+out your understanding of a topic.</font></font></blockquote>
+
+<blockquote><font face="Helvetica"><font size=+0>Sometimes an excursion
+is titled <i>The Gory <u>Details</u></i>. This kind of excursion is used
+to introduce details that you probably don't want to know, but which you
+will be better off knowing. In general, these gory details do not affect
+the sample program.</font></font></blockquote>
+
+<hr>
+<p><font face="Palatino">With a book of this type, a topic can be discussed
+in multiple places as a result of when and where we add functionality during
+application development. To help make this all clear, I've included a Concept
+Web that provides a graphical representation of how all the programming
+concepts relate to one another. You'll find it on the inside front cover
+of this book.</font>
+<br>&nbsp;
+<br>&nbsp;
+<table BORDER=0 CELLSPACING=7 WIDTH="100%" BGCOLOR="#FFFFFF" >
+<tr>
+<td VALIGN=TOP><img SRC="Note.gif" ALT="Note" height=25 width=72 align=TEXTTOP></td>
+
+<td VALIGN=TOP BGCOLOR="#D5D500"><font face="Arial">Notes give you comments
+and asides about the topic at hand, as well as full explanations of certain
+concepts.</font></td>
+</tr>
+</table>
+
+<table BORDER=0 CELLSPACING=7 WIDTH="100%" BGCOLOR="#FFFFFF" >
+<tr>
+<td VALIGN=TOP><img SRC="Tip.gif" ALT="Tip" height=25 width=72 align=TEXTTOP></td>
+
+<td VALIGN=TOP BGCOLOR="#D5D500"><font face="Arial">Tips provide great
+shortcuts and hints on how to program in C++ more effectively.</font></td>
+</tr>
+</table>
+
+<table BORDER=0 CELLSPACING=7 WIDTH="100%" BGCOLOR="#FFFFFF" >
+<tr>
+<td VALIGN=TOP><img SRC="Warning.gif" ALT="Warning" height=24 width=72 align=TEXTTOP></td>
+
+<td VALIGN=TOP BGCOLOR="#D5D500"><font face="Helvetica">Warnings warn you
+against making your life miserable and avoiding the pitfalls in programming.</font></td>
+</tr>
+</table>
+
+<p><font face="Palatino">In addition, you'll find various typographic conventions
+throughout this book:</font>
+<ul>
+<li>
+<font face="Palatino">Commands, variables, and other code stuff appear
+in text in a special </font><font face="Courier">monospaced font</font><font face="Palatino">.</font></li>
+
+<li>
+<font face="Palatino">In this book, I build on existing listings as we
+examine code further. When I add new sections to existing code, you'll
+spot it in </font><b><font face="Courier">bold monospace</font></b><font face="Palatino">.</font></li>
+
+<li>
+<font face="Palatino">Commands and such that you type appear in <b>bold
+type</b>.</font></li>
+
+<li>
+<font face="Palatino">Placeholders in syntax descriptions appear in a </font><i><font face="Courier">monospaced
+italic</font></i><font face="Palatino"> typeface. This indicates that you
+will replace the placeholder with the actual filename, parameter, or other
+element that it represents.</font></li>
+</ul>
+<a NAME="GettingSupport"></a>
+<p><b><font face="Helvetica"><font size=+1>Getting Project Code and Support</font></font></b>
+<p><font face="Palatino">Support for this book is available on the Internet
+at <a href="http://www.halpernwightsoftware.com/stdlib-scratch/support.html">http://www.halpernwightsoftware.com/stdlib-scratch/support.html</a>.
+Here you will find source code, a quick reference guide, exercises, errata,
+and links to help you get the most out of this book. Check back periodically
+for new information and links.</font>
+<p><font face="Palatino">The source code on the Web is organized by chapter,
+with the final project source in the Chapter 10 Code section. Look for
+<b>Code
+Notes</b> in the text, which will direct you to the code directory for
+each set of listings.</font><font face="Palatino"></font>
+<p><font size=-1>[ return to <a href="../index.html">The C++ Standard Library
+from Scratch home page</a> ]</font>
+</body>
+</html>

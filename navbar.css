@@ -1,0 +1,86 @@
+/* Within a separate style sheet intended for inclusion in HTML documents,
+ * the <style> tag must not appear or else the 1st style is corrupted */
+
+BODY
+{
+    COLOR: white;
+    BACKGROUND: #0099CC;
+    FONT-FAMILY: Helvetica, Arial, sans-serif;
+    FONT-WEIGHT: bold;
+}
+
+A
+{
+    COLOR: white;
+    TEXT-DECORATION: none;
+}
+
+A:visited
+{
+    COLOR: white;
+    TEXT-DECORATION: none;
+}
+
+A:hover
+{
+    COLOR: #FFFF00;
+    TEXT-DECORATION: underline;
+}
+
+DIV.sublink
+{
+    MARGIN-LEFT: 0.25in;
+    FONT-FAMILY: Helvetica, Arial, sans-serif;
+	FONT-WEIGHT: lighter;
+    FONT-SIZE: 90%;
+}
+
+P.sublink
+{
+    MARGIN-TOP: 6px;
+    MARGIN-BOTTOM: 6px;
+}
+
+/* Fake a button */
+.pseudoButton 
+{
+	text-align: center; 
+	border-style: outset; 
+	color: #000000;
+	background: #C0C0C0;
+	padding: 3pt; 
+	font-weight: bold;
+}
+
+.pseudoButton TD
+{
+	text-align: center; 
+}
+
+.pseudoButton A
+{
+    TEXT-DECORATION: none;
+	color: #000000;
+}
+
+.pseudoButton A:hover
+{
+    TEXT-DECORATION: underline;
+	color: #000000;
+}
+
+.pseudoButton A:visited
+{
+    TEXT-DECORATION: none;
+	color: #000000;
+}
+
+.candleCaption
+{
+	FONT-SIZE: 80%;
+	FONT-WEIGHT: normal;
+}
+
+/* The </style> tag must not appear */
+
+

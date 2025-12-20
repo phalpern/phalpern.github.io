@@ -1,0 +1,262 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Version" content="8.0.3410">
+   <meta name="Date" content="10/11/96">
+   <meta name="Template" content="C:\Program Files\Microsoft Office\Office\HTML.DOT">
+   <meta name="GENERATOR" content="Mozilla/4.5 [en] (WinNT; I) [Netscape]">
+   <title>Errata for The C++ Standard Library From Scratch</title>
+</head>
+<body text="#000000" bgcolor="#FFFFFF" link="#0000FF">
+
+<center>
+<h1>
+Errata for <i>The C++ Standard Library From Scratch</i></h1></center>
+This page lists errors in the book and clarifications of ambiguous points.
+If you think you have found another error if you have other questions about
+the book, please contact the author at
+<a href="mailto:Pablo Halpern <stdlib-scratch@halpernwightsoftware.com>">
+Pablo Halpern &lt;stdlib-scratch@halpernwightsoftware.com></a>. Please include
+your full name so that I can credit you for finding the error. For additional
+book-related support, check out my <a href="support.html">support page</a>.
+<p><b>Last updated <UpdateTime>05/19/2003</UpdateTime></b></p>
+<table width="100%" bordercolor="#FFFF00" bgcolor="#FF6600" cellspacing="2" cellpadding="2" border="2">
+  <tr><!-- Row 1 -->
+    <td><font color="#FFFF00"><h2>Attention Microsoft Visual C++ Users:</h2>
+	<font size="+1">
+	<p>At the time <i>The C++ Standard Library From Scratch</i> was written,
+	Visual C++ version 6.0 was the the most current compiler from Microsoft. The book and examples
+	have numerous work-arounds for compiler and library bugs in VC++ 6.0 that are no longer
+	necessary in the newer VC++ 7.0 (aka VC++.NET). Please not the following important points:</p>
+	<p><strong>Visual C++ 6.0 users:</strong> Although it is mentioned in the introduction,
+	it is worth repeating here that the library that shipped with VC++ 6.0 had some
+	significant bugs.  To get the latest bug fixes, you must do two things:</p>
+	<ol type="1">
+    <li>Go the the Microsoft Web site and download any service packs for the compiler.</li>
+    <li>Go to <a href=http://www.dinkumware.com/vc_fixes.html>http://www.dinkumware.com/vc_fixes.html</a>
+	and apply the fixes listed there, especially the 
+	&lt;istream&gt; fix. Failing to do this will cause the example code to behave strangely.</li>
+	</ol>
+	<p><strong>Visual C++ 7.0 (.NET) users:</strong> throughout the example code there
+	are conditionals of the form <strong><tt>#ifdef _MSC_VER</tt></strong> that should
+	no longer be used for the newer compiler. The best solution is to change each of
+	these conditionals to <strong><tt>#if defined(_MSC_VER) && _MSC_VER < 1300</tt></strong>.
+	Beginning with Chapter 8, this change is crucial to prevent infinite recursion and
+	stack overflow. <i>Thanks to Stephen Goodman for doing the detective work on this.</i></p>
+	</font></font></td>
+  </tr>
+
+</table>
+<h2>
+Introduction</h2>
+
+<ol>
+<li>
+Page 7, under <i>What Tools Do I Need?</i>, first paragraph, last sentence:
+The exercises are not scattered throughout the book but are available on
+the <a href="support.html">support web site</a>.</li>
+
+<li>
+Page 8, first paragraph (continued from previous page) describes how to
+obtain the egcs 1.1.2 compiler. The egcs compiler has been improved and
+re-integrated with the Gnu compiler and is now known as the Gnu Compiler
+Collection (GCC) 2.95. You should probably use GCC 3.3 instead of egcs
+1.1.2. However, as of 19 May 2003, the examples and exercises have not
+been tested with GCC 3.3. Many work-arounds are no longer needed. In particular, 
+the &lt;sstream&gt; work-around included in the example sources is not needed with 
+with GCC 3.3. See, also, the <a href="README.txt">README.txt</a>
+file that comes with the code.</li>
+<li>Did I mention that you need to go to the Dinkumware web site, 
+<a href=http://www.dinkumware.com/vc_fixes.html>http://www.dinkumware.com/vc_fixes.html</a>
+if you use VC++ 6.0?  Read the big warning text in orange above.</li>
+<li>The correct email address to reach me is:
+<a href="mailto:Pablo Halpern <stdlib-scratch@halpernwightsoftware.com>">
+stdlib-scratch@halpernwightsoftware.com</a>
+</ol>
+
+<h2>Chapter 1</h2>
+
+<ol>
+<li>
+Page 18, Figure 1.2: The arrow heads pointing to Address and Appointment
+should have asterisks next to them, indicating a one-to-many aggregation.
+A portion of this diagram is drawn correctly in Figure 3.1, page 63. <i>Thanks
+to John Bell for pointing out this omission.</i></li>
+
+<li>
+Page 18 clarification: In the second-to-last paragraph, 5th sentence, "The
+top section is the class name, ..." would be clearer if it said "The top
+section <b>of each box</b> contains the class name, ...". That is, <i>top,
+middle,</i> and <i>bottom</i> refer to each box, not to the whole diagram.
+Furthermore I should point out that what looks like double lines in Figure
+1.2 are actually two separate lines bracketing an empty section in the
+box. <i>Thanks to Mark Chariton for pointing out this lack of clarity.</i></li>
+</ol>
+
+<h2>
+Chapter 2</h2>
+
+<ol>
+<li>
+Page 38, Listing 2.6, line 9: the word "The" will actually show up as "eThe"
+if you run the program. A copy editor fixed the "spelling error" at the
+last minute, not realizing that it was supposed to be that way.</li>
+
+<li>
+Page 44, Listing 2.10, line 6 should read "<tt>using std::strcpy; using
+std::strlen;</tt>"</li>
+
+<li>
+Page 55, second-to-last sentence. "Listing 2.17 is an attempt to do the
+same thing as Listing 2.15, ..." should read "... do the same thing as
+Listing <b>2.16</b>, ...".&nbsp; <i>Thanks to Mark Chariton</i></li>
+</ol>
+
+<h2>
+Chapter 3</h2>
+
+<ol>
+<li>
+Page 65, Listing 3.4, Line 1: The file name is <tt>AddressBook.h</tt>,
+not <tt>AddressBook.cpp</tt></li>
+
+<li>
+Page 68, Figure 3.2: In the left-middle part of the diagram, the words
+<tt>tmplt&lt;int></tt>
+should be <tt>mytmplt&lt;int></tt>.</li>
+
+<li>
+Page 68, Listing 3.6: Line 1: The file name is missing. It should say "<tt>File
+AddressBook.cpp</tt>"</li>
+
+<li>
+Page 68, Listing 3.6: Line 3: <tt>#ifndef</tt> should be <tt>#ifdef</tt></li>
+</ol>
+
+<h2>
+Chapter 4</h2>
+
+<ol>
+<li>
+Pages 86-88, Listings 4.5 - 4.8: Every occurance of the word, <tt>addrlist</tt>,
+in these listings should be replaced by <tt>std::list&lt;Address></tt>.
+The <tt>addrlist</tt> typedef is not introduced until Listing 4.9. <i>Thanks
+to RTMOUNT.</i></li>
+
+<li>
+Page 99, Listing 4.6 (continued from previous page), line 67 should be
+a blank line (except for the line number). The word "output" was accidentally
+inserted during production.</li>
+</ol>
+
+<h2>
+Chapter 5</h2>
+
+<ol>
+<li>
+<strong>Microsoft Visual C++ users take note:</strong> If the input to
+the editor always seems to be a line behind (i.e., nothing happens
+until you press return <em>twice</em>), then you have a version of the
+VC++ library with a number of known bugs. I mentioned this in the
+introduction, but many people seemed to have missed it. Dinkumware,
+Ltd., the company that supplies the library to Microsoft, has fixed
+many of these bugs. A list of fixes is available on the Internet at
+<a href="http://www.dinkumware.com/vc_fixes.html">
+http://www.dinkumware.com/vc_fixes.html</a>. You can also purchase a
+complete, updated library through this Web site.
+</ol>
+
+<h2>
+Chapter 6</h2>
+
+<ol>
+<li>
+Page 157, Figure 6.2, The first column heading should read <tt>addrById_</tt>,
+not <tt>addrByName_</tt>.&nbsp; <i>Thanks to Mark Chariton</i></li>
+</ol>
+
+<h2>
+Chapter 7</h2>
+
+<ol>
+<li>
+Page 172, Listing 7.1 (continued), line 69, the word <tt>cachedLast_</tt>
+should be changed to <tt>cachedFirst_</tt> in the comment. The same change
+should be made on page 178, Listing 7.3, line 71. <i>Thanks to Darrin Roberts.</i></li>
+
+<li>
+Page 196, Listing 7.9 (continued), Line 127:</li>
+</ol>
+
+<blockquote><tt>127:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; while (iter !=
+endIter)</tt></blockquote>
+
+<blockquote>Should be replaced with:</blockquote>
+
+<blockquote><tt>127:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; while (*iter &lt;
+*endIter) // empty loop if *endIter absent</tt></blockquote>
+
+<blockquote>This change prevents a potential endless loop if the user edits
+a record such that it is no longer in the search results. This change will
+not prevent the item from showing up in the list, but it will prevent the
+endless loop.</blockquote>
+
+<h2>
+Chapter 8</h2>
+
+<ol>
+<li>
+Page 207, The second to last sentence in the Excursion should begin "We
+call <b><tt>pop</tt></b> ...," not "We call <b><tt>top</tt></b>..."</li>
+
+<li>
+Page 208, Listing 8.3, line 6, <tt>__GCC__</tt> should be replaced with
+<tt>__GNUC__</tt>.
+Same change for page 233, Listing 8.17, line 12.</li>
+
+<li>
+Page 225, first paragraph, second line, "<tt>0&ntilde;RAND_MAX</tt>" should
+read "<tt>0 - RAND_MAX</tt>". <i>Thanks to Kevin Seghetti</i></li>
+
+<li>
+Page 226, in the excursion, first paragraph, fourth line, "<tt>ostringstream,
+ifstream </tt>and <tt>istrstream</tt>" should read, "<b>i<tt>stringstream</tt></b><tt>,
+ifstream </tt>and <tt>istrstream</tt>". <i>Thanks to Kevin Seghetti</i></li>
+
+<li>
+Page 232, at the end of the excursion, the code given to remove and delete
+all the pointers in a container will not compile. The correct code is as
+follows:</li>
+
+<pre>&nbsp; while (! myset.empty())
+&nbsp; {
+&nbsp;&nbsp;&nbsp; myclass* p = *myset.begin();
+&nbsp;&nbsp;&nbsp; myset.erase(myset.begin());
+&nbsp;&nbsp;&nbsp; delete p;
+&nbsp; }</pre>
+If the container type is not known or is known to be vector, then the following
+is more efficient:
+<pre>template &lt;class Container>
+void deleteAndClear(Container&amp; mycontainer)
+{
+&nbsp; // This code works for all standard containers except map and multimap
+&nbsp; while (! mycontainer.empty())
+&nbsp; {
+&nbsp;&nbsp;&nbsp; Container::iterator i = mycontainer.end();
+&nbsp;&nbsp;&nbsp; Container::value_type p = *--i;
+&nbsp;&nbsp;&nbsp; mycontainer.erase(i);
+&nbsp;&nbsp;&nbsp; delete p;
+&nbsp; }
+}</pre>
+
+The function template above works only for containers with
+bi-directional or random-access iteratators (including all of the
+standard sequence containers and the set container).  Neither of the
+above code fragments work unchanged for <tt>map</tt> or
+<tt>multimap</tt> containers, although the same basic techniques can
+be used for maps or multimaps container pointer keys and/or pointer values.
+</ol>
+
+</body>
+</html>

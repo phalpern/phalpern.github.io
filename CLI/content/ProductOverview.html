@@ -1,0 +1,329 @@
+<HTML>
+    <HEAD>
+        <TITLE>CLI Power Tools</TITLE>
+        <META HTTP-EQUIV="Content-Type" CONTENT=
+        "text/html; charset=iso-8859-1">
+        <META NAME="Author" CONTENT="Pablo Halpern">
+        <META NAME="Keywords" CONTENT=
+        "Cisco CLI Cisco-like command line interface development tool WindRiver RapidControl for CLI">
+        <META NAME="Description" CONTENT=
+        "CLI Power Tools is a command-line interface (CLI) development tool for embedded software developers that dramatically decreases the resources needed to develop a high-quality CLI. Unlike packages WindRiver&#39;s RapidControl for CLI, it is designed for team development and can produce a truly Cisco-compliant CLI.">
+        <BASE TARGET="_top">
+<STYLE TYPE="text/css">
+
+ body { background: #FFEFC9; font-family: BOOKMAN OLD STYLE,PALATINO,SERIF }
+
+/* Style sheet for feature pop-up area. Must have absolute positioning, but by
+ * not specifying the top, it behaves somewhat as if it used relative
+ * positioning. */
+#featureArea { position: absolute; left: 40% }
+
+/* Style used for the dynamic feature description pop-up. */
+.feature { color: #6666CC; font-size: 100%; font-weight: bold; width: 90%;
+		   font-family: ARIAL,HELVETICA,SANS-SERIF; margin-top: 12pt; }
+
+/* Create some nice hover effects for the feature */
+.ctLinks   { width: 35%; font-family:ARIAL,HELVETICA,SANS-SERIF; }
+.ctLinks a { color:#660033; font-weight:bold; text-decoration: none; }
+.ctLinks a:hover { color:#FFFFFF; background: #6666CC; }
+.ctLinks p { color:#660033; font-weight:bold; font-family:ARIAL,HELVETICA,SANS-SERIF; margin-left: 30pt; margin-top: 12pt; margin-bottom: 0pt }
+.ctLinks blockquote { margin-left: 66pt; width: 250%; font-family: BOOKMAN OLD STYLE,PALATINO,SERIF }
+
+.testimonial { color: #6666CC; font-size: 125%; font-family: arial,helvetica,sans-serif; font-weight: bold;
+				margin-top: 15pt; margin-bottom: 15pt; margin-left: 20%; margin-right: 20%;
+				text-indent: -10pt; }
+.testimonialSig { color: #6666CC; font-size: 100%; font-family: arial,helvetica,sans-serif; font-weight: bold;
+				margin-top: 15pt; margin-bottom: 15pt; margin-left: 20%; margin-right: 20%;
+				text-align: right; }
+
+.instruct { font-family:ARIAL,HELVETICA,SANS-SERIF; font-weight: bold;
+		    margin-left: 36pt; margin-top: 12pt; margin-bottom: 0pt }
+
+ h1 {color: #660033; font-family: ARIAL,HELVETICA,SANS-SERIF; text-align: center}
+ h3 {color: #660033; font-family: ARIAL,HELVETICA,SANS-SERIF}
+ p {font-family: BOOKMAN OLD STYLE,PALATINO,SERIF}
+ p.subtext { font-family: ARIAL,HELVETICA,SANS-SERIF; margin-top: 0px }
+ p.c4 {text-align: center; }
+ p.c3 {color: #FFFFFF; font-family: ARIAL,HELVETICA,SANS-SERIF; font-size: 120%; font-weight: bold; text-align: center}
+ li {font-family: BOOKMAN OLD STYLE,PALATINO,SERIF}
+
+</STYLE>
+
+<SCRIPT LANGUAGE="JavaScript" TYPE="text/JavaScript" SRC="../../scripts/changetext.js"></SCRIPT>
+
+<SCRIPT LANGUAGE="JavaScript" TYPE="text/JavaScript">
+	// Create object for displaying a different feature description when rolling over feature links
+	featureAreaObj = new changeTextObj('featureArea', 'feature');
+
+	featureArray = new Array();
+
+	featureInstruct = '<IMG SRC="../../leftarr.gif"> To see more details, ' +
+				      'point your mouse to each feature listed to the left.';
+
+	// If window is not within a frame, then this must be the printer-friendly version
+	printerFriendly = (top == window);
+
+	function addFeature(featureName, featureDesc)
+	{
+		if (printerFriendly)
+		{
+			// printer-friendly version. Put feature description right under feature name.
+			document.write('<P>' + featureName + '</P>');
+			document.write('<BLOCKQUOTE>' + featureDesc + '</BLOCKQUOTE>');
+		}
+		else
+		{
+			// Within a frame, use dynamic HTML version:
+            document.write('<P><A HREF="#" ' +
+			               'onmouseover="featureAreaObj.changeText(featureArray[' +
+						   featureArray.length + '])">' +
+						   featureName + '</A></P>');
+			featureArray.push(featureDesc);
+		}
+	}
+
+	// Turn on feature area if displaying printer-friendly version.
+	if (! printerFriendly)
+	    onload = function() { featureAreaObj.changeText(featureInstruct); }
+
+</SCRIPT>
+    </HEAD>
+
+    <BODY>
+
+	    <P ALIGN="center"><OBJECT classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"
+          codebase="http://active.macromedia.com/flash2/cabs/swflash.cab#version=4,0,0,0"
+          ID=CLIPowerTools WIDTH="100%" HEIGHT=65>
+          <PARAM NAME=movie VALUE="CLIPowerTools.swf">
+          <PARAM NAME=quality VALUE=high>
+          <PARAM NAME=loop VALUE=false>
+          <EMBED src="CLIPowerTools.swf" loop=false quality=high
+           WIDTH=400 HEIGHT=65 TYPE="application/x-shockwave-flash"
+          PLUGINSPAGE="http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash">
+          </EMBED>
+  		</OBJECT></P>
+
+		<TABLE CLASS="subtext" WIDTH="100%"><TR>
+			<TD style="text-align:left">
+				Email: <A HREF="mailto:clipowertools@halpernwightsoftware.com">
+				clipowertools@halpernwightsoftware.com</A></TD>
+			<TD style="text-align:right">Phone: +1 603-801-4558</TD>
+		</TR></TABLE>
+
+		<P CLASS="testimonial">
+			&#8220;First, a big thanks for doing this work and standing by it!   It really helped us with our
+			development ...  Personally, I would use this toolkit again in a heartbeat.&#8221;
+		</P>
+		<P CLASS="testimonialSig">
+		    - Philippe Roger, Pedestal Networks
+		</P>
+
+        <H1> If your new network-connected device needs a
+        Command Line Interface, you have two options:</H1>
+
+        <TABLE BORDER CELLSPACING="1" CELLPADDING="7" WIDTH="600px"
+        ALIGN="CENTER">
+            <TR>
+                <TD WIDTH="50%" BGCOLOR="#660033">
+                    <P CLASS="c3"> Build it from scratch</P>
+
+                    <TABLE BORDER CELLSPACING="1" CELLPADDING="7"
+                    WIDTH="100%" BGCOLOR="#FFFFFF">
+                        <TR>
+                            <TD HEIGHT="60">
+                                <P CLASS="c4">Re-invent the wheel</P>
+                            </TD>
+                        </TR>
+
+                        <TR>
+                            <TD HEIGHT="60">
+                                <P CLASS="c4">See your first command
+                                working in a few months &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</P>
+                            </TD>
+                        </TR>
+
+                        <TR>
+                            <TD HEIGHT="60">
+                                <P CLASS="c4">Spend 6-9 months
+                                completing the CLI</P>
+                            </TD>
+                        </TR>
+
+                        <TR>
+                            <TD HEIGHT="60">
+                                <P CLASS="c4">Spend $100K to $300K on
+                                development</P>
+                            </TD>
+                        </TR>
+                    </TABLE>
+                </TD>
+
+                <TD WIDTH="50%" BGCOLOR="#6666CC">
+                    <P CLASS="c3"> Use CLI Power Tools</P>
+
+                    <TABLE BORDER CELLSPACING="1" CELLPADDING="7"
+                    WIDTH="100%" BGCOLOR="#FFFFFF">
+                        <TR>
+                            <TD HEIGHT="60">
+                                <P CLASS="c4">Use a proven, working
+                                solution</P>
+                            </TD>
+                        </TR>
+
+                        <TR>
+                            <TD HEIGHT="60">
+                                <P CLASS="c4">Get commands working on
+                                the first day - Great for early
+                                testing</P>
+                            </TD>
+                        </TR>
+
+                        <TR>
+                            <TD HEIGHT="60">
+                                <P CLASS="c4">Cut 3-6 months off your
+                                development time</P>
+                            </TD>
+                        </TR>
+
+                        <TR>
+                            <TD HEIGHT="60">
+                                <P CLASS="c4">Save 50% or more on CLI
+                                development costs</P>
+                            </TD>
+                        </TR>
+                    </TABLE>
+                </TD>
+            </TR>
+        </TABLE>
+
+        <P CLASS="c5">If your company is building a network-connected
+        device like a router, switch, or firewall, you&#8217;ll
+        probably need a Command Line Interface (CLI). And, if
+        you&#8217;re like most companies, you&#8217;ll want to make the
+        CLI easy to use for network operators familiar with
+        Cisco&#8217;s IOS CLI.</P>
+
+        <P CLASS="c5">Your options? You could build a CLI yourself from
+        scratch. But don&#39;t underestimate the task. Today&#39;s
+        customers expect the CLI to have robust command-line editing,
+        command completion, and context-sensitive help for every keyword
+        and parameter. A good CLI won&#39;t necessarily sell your
+        device, but a bad CLI will reflect poorly on your whole product
+        line.</P>
+
+        <H3 CLASS="c6">CLI Power Tools ...</H3>
+
+        <UL>
+            <LI>Takes care of the mechanics of command entry and
+            parsing, so you can focus on the syntax and semantics.</LI>
+
+            <LI>Frees your development staff to focus on the
+            features that make make your device unique, instead of on
+            the CLI.</LI>
+
+            <LI>Gives you complete control over your command set. Make
+            it as much like Cisco&#39;s as you want, or make it
+            completely different.</LI>
+
+            <LI>Is designed for team development.</LI>
+
+            <LI>Produces a professional-quality CLI</LI>
+
+            <LI>Is fully supported and continually enhanced.</LI>
+
+            <LI>Reduces time to market.</LI>
+
+            <LI><STRONG>Saves you time and money.</STRONG></LI>
+        </UL>
+
+        <H3 CLASS="c6">Features</H3>
+
+		<DIV ID="featureArea">
+			<P CLASS="feature">
+			</P>
+		</DIV>
+
+		<DIV CLASS="ctLinks"><SCRIPT LANGUAGE="JavaScript" TYPE="text/JavaScript">
+
+        addFeature("Designed for Team Development",
+		   "Command descriptions can be spread out over as "
+                 + "many files as you want. The plain text input files "
+                 + "can be edited with your favorite text editor and "
+                 + "managed with your favorite source-control tools. "
+                 + "<BR><BR>Command description files are easy for "
+                 + "tech writers and SQA engineers to understand, "
+                 + "making documentation and test development easier.");
+
+        addFeature("Privilege Levels for each Command",
+                   "Each command is a assigned a set of "
+                 + "privileges. Only users with the right privileges "
+                 + "can execute a command. If a user does not have "
+                 + "sufficient privilege, the command does not display "
+                 + "in context-sensitive help.");
+
+        addFeature("Dynamic Command Sets",
+                   "Commands can be enabled and disabled in response "
+                 + "to the state of the system. For example, if an "
+                 + "interface is down, commands that use that "
+                 + "interface can be disabled and hidden from "
+                 + "context-sensitive help.");
+
+        addFeature("Automatic Syntax and Range Checking",
+                   "Syntax checking and range checking are performed "
+                 + "automatically by the infrastructure, simplifying "
+                 + "command implementation.  The exact location of an "
+                 + "error is displayed to the user.");
+
+        addFeature("Command-line editing",
+                   "The command-line editor lets users modify a "
+                 + "command line before submitting it to the "
+                 + "interpreter. The history feature lets them recall "
+                 + "and edit previous commands. The editor&#8217;s key "
+                 + "bindings are fully-customizable. (The default key "
+                 + "bindings emulate emacs.)");
+
+        addFeature("Context-sensitive Help and Keyword Completion",
+                   "If the user types part of a command and then "
+                 + "presses the question mark key, the CLI displays "
+                 + "the available next parameters, with help text for "
+                 + "each one.  <BR><BR>If the user types part of a "
+                 + "keyword and then presses the TAB key, the CLI "
+                 + "automatically completes the keyword.");
+
+		// I don't really think we need to specify this feature:
+        // addFeature("Page-at-a-time Output",
+        //           "If the output from a command exceeds one "
+        //         + "screen-full, then output is paused at the end of "
+        //         + "each screen and the user is prompted (with a "
+        //         + "--MORE-- prompt) to press a key to "
+        //         + "continue.");
+
+		</SCRIPT></DIV>
+
+		<H3>Learn more! Contact us at:</H3>
+
+		<BLOCKQUOTE>Email: <A HREF="mailto:clipowertools@halpernwightsoftware.com">
+		clipowertools@halpernwightsoftware.com</A></BLOCKQUOTE>
+
+		<BLOCKQUOTE>Or call Pablo Halpern at +1 603-801-4558</BLOCKQUOTE>
+
+<!--
+        <P CLASS="c5">[Pop-up, slide-out, etc. topics ]</P>
+
+        <UL>
+            <LI>Theory of Operation</LI>
+
+            <LI>Command Description Language</LI>
+
+            <LI>Can be understood by Tech Doc.</LI>
+
+            <LI>FAQ</LI>
+        </UL>
+-->
+
+<p><small>
+Copyright 2003 Halpern-Wight Software Inc. All rights reserved.
+</small></p>
+
+    </BODY>
+</HTML>

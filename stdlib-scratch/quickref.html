@@ -1,0 +1,1721 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.5 [en] (WinNT; I) [Netscape]">
+   <title>C++ Standard Library Quick Reference</title>
+</head>
+<body bgcolor="#FFFFFF">
+
+<h1>
+Quick Reference</h1>
+
+<A href="index.html">
+<IMG align=right alt="Book Cover" height=155 src="cover.jpg" width=125 >
+</A>
+<h2>Introduction</h2>
+This quick reference is intended for readers of book, <A href="index.html">
+<i>The C++ Standard Library from Scratch</i></a>.
+It is not a full reference to the standard library.
+Descriptions, where provided are terse and are not intended to replace
+the more complete descriptions found in the book. Some elements are listed
+using actual class or function declarations; other elements are listed
+using a shorthand to make things simpler and/or more concise. Some elements
+of the standard library were omitted entirely because they are not included
+in the book. Conversely, many of the topics covered in the book are covered
+in even more detail here.
+<p>Numerous concepts were simplified in this quick reference. For example,
+in the Standard, string is actually a typedef for <tt>basic_string&lt;char,
+char_traits&lt;char>, allocator&lt;char> ></tt>. If you look up a function
+in the standard and find that it has different arguments or a different
+return type than I've specified here, it's probably because I wanted to
+make it simpler. Also, there are defects in the standard. For situations
+I was aware of, I tried to present the likely resolution to the defect,
+rather than the original defective definition.
+<p><b>Important Note:</b> Except where otherwise noted, all of the components
+in this quick reference are in namespace <tt>std</tt>.
+<br>
+<hr size=3>
+<h1>
+Table of Contents</h1>
+
+<ul>
+<li>
+<a href="#strings">Strings</a></li>
+
+<ul>
+<li>
+<a href="#strings1">String Argument Conventions</a></li>
+
+<li>
+<a href="#strings2">The String Class</a></li>
+
+<li>
+<a href="#strings3">String Nested Types and Constants</a></li>
+
+<ul>
+<li>
+<a href="#strings4">Types</a></li>
+
+<li>
+<a href="#strings5">Constants</a></li>
+</ul>
+
+<li>
+<a href="#strings6">String Member Functions</a></li>
+
+<ul>
+<li>
+<a href="#strings7">Constructors</a></li>
+
+<li>
+<a href="#strings8">Assignment Operators and Functions</a></li>
+
+<li>
+<a href="#strings9">Iterator Functions</a></li>
+
+<li>
+<a href="#strings10">Size and Capacity</a></li>
+
+<li>
+<a href="#strings11">Element Access</a></li>
+
+<li>
+<a href="#strings12">Append Functions and Operators</a></li>
+
+<li>
+<a href="#strings13">Insert Functions</a></li>
+
+<li>
+<a href="#strings14">Erase Functions</a></li>
+
+<li>
+<a href="#strings15">Replace Functions</a></li>
+
+<li>
+<a href="#strings16">Comparison Functions</a></li>
+
+<li>
+<a href="#strings17">Substrings</a></li>
+
+<li>
+<a href="#strings18">Conversions</a></li>
+
+<li>
+<a href="#strings19">Search Functions</a></li>
+</ul>
+
+<li>
+<a href="#strings20">String-Related Global Operators and Functions</a></li>
+</ul>
+
+<li>
+<a href="#containers">Containers</a></li>
+
+<ul>
+<li>
+<a href="#containers1">Container Types</a></li>
+
+<ul>
+<li>
+<a href="#containers2">Sequence Containers</a></li>
+
+<li>
+<a href="#containers3">Sorted Associative Containers</a></li>
+</ul>
+
+<li>
+<a href="#containers4">Nested Types for All Containers</a></li>
+
+<li>
+<a href="#containers5">Member Functions for All Containers</a></li>
+
+<li>
+<a href="#containers6">Container-Related Global Operators</a></li>
+
+<li>
+<a href="#containers7">Sequence Containers Member Functions</a></li>
+
+<li>
+<a href="#containers8">Sorted Associative Containers</a></li>
+
+<ul>
+<li>
+<a href="#containers9">Nested Types</a></li>
+
+<li>
+<a href="#containers10">Member Functions</a></li>
+</ul>
+
+<li>
+<a href="#containers11">Special List Functions</a></li>
+
+<li>
+<a href="#containers12">Container Adaptors</a></li>
+
+<ul>
+<li>
+<a href="#containers13">Stack</a></li>
+
+<li>
+<a href="#containers14">Queue</a></li>
+
+<li>
+<a href="#containers15">Priority_queue</a></li>
+</ul>
+</ul>
+
+<li>
+<a href="#iterators">Iterators</a></li>
+
+<ul>
+<li>
+<a href="#iterators1">Insertion Iterators</a></li>
+
+<li>
+<a href="#iterators2">Iterator Functions</a></li>
+</ul>
+
+<li>
+<a href="#function">Function Objects</a></li>
+
+<ul>
+<li>
+<a href="#function1">Function Object Base Classes</a></li>
+
+<li>
+<a href="#function2">Standard Function Objects</a></li>
+
+<li>
+<a href="#function3">Negator and Binder Functions</a></li>
+
+<li>
+<a href="#function4">Function Pointer Adaptors</a></li>
+
+<ul>
+<li>
+<a href="#function5">Pointer-to-Function Adaptors</a></li>
+
+<li>
+<a href="#function6">Pointer-to-Member-Function Adaptors</a></li>
+</ul>
+</ul>
+
+<li>
+<a href="#algorithms">Algorithms</a></li>
+
+<li>
+<a href="#io">Input/Output</a></li>
+
+<ul>
+<li>
+<a href="#io1">Stream Classes</a></li>
+
+<li>
+<a href="#io2">ios Nested Types</a></li>
+
+<li>
+<a href="#io3">Format Flags</a></li>
+
+<li>
+<a href="#io4">ios Member Functions</a></li>
+
+<li>
+<a href="#io5">Unformatted Output Functions</a></li>
+
+<li>
+<a href="#io6">Unformatted Input Functions</a></li>
+
+<li>
+<a href="#io7">fstream Member Functions</a></li>
+
+<li>
+<a href="#io8">stringstream Member Functions</a></li>
+
+<li>
+<a href="#io9">strstream Member Functions</a></li>
+
+<li>
+<a href="#io10">I/O Manipulators</a></li>
+</ul>
+
+<li>
+<a href="#clibrary">C Library Functions Used in the Book</a></li>
+
+<ul>
+<li>
+<a href="#clibrary1">Null-Terminated String Functions</a></li>
+
+<li>
+<a href="#clibrary2">Character Operations</a></li>
+
+<li>
+<a href="#clibrary3">Random Numbers</a></li>
+
+<li>
+<a href="#clibrary4">Time and Date</a></li>
+
+<li>
+<a href="#clibrary5">Debugging Assertions</a></li>
+</ul>
+</ul>
+
+<hr size=3><a NAME="strings"></a>
+<h2>
+Strings</h2>
+<a NAME="strings1"></a>
+<h3>
+String Argument Conventions</h3>
+The member functions in this section take arguments with the following
+names:
+<p>The single argument <i>pos</i> or <i>pos1</i> signifies a position within
+the <i>this</i> string.
+<p>The two arguments, <i>pos </i>and <i>len</i>, signify a substring of
+the <i>this</i> string starting at <i>pos</i> with length <i>len</i>. If
+<i>len</i> is <tt>npos</tt> or is more than <tt>size()</tt>, then the substring
+goes from <i>pos</i> to the end of the string.
+<p>The arguments, <i>pos1</i> and <i>len1</i> have the same meaning as
+<i>pos</i> and <i>len</i> and are used in functions where there is a second
+string involved.
+<p>The arguments, <i>s2, pos2</i> and <i>len2</i> signify a substring of
+<i>s2</i> starting at <i>pos2</i> with length <i>len2</i>.
+<p>The argument, <i>nts</i>, signifies a Null-Terminated String (a C-style
+string).
+<p>The arguments, <i>buf</i> and <i>buflen</i> signify a character buffer,
+<i>buf</i>, of length <i>buflen</i>. (A null character, is treated like
+any other character).
+<p>The arguments, <i>repetitions</i> and <i>c</i> signify <i>repetitions
+</i>copies
+of the signal character, <i>c</i>.
+<p>The two arguments, <i>start</i> and <i>finish</i> signify an iterator
+range, <i>[start, finish)</i>, comprising a substring of the <i>this</i>
+string.
+<br><a NAME="strings2"></a>
+<h3>
+The <tt>string</tt> Class</h3>
+<b><tt>#include &lt;string></tt></b>
+<br><tt>class string;</tt>
+<br><a NAME="strings3"></a>
+<h3>
+String Nested Types and Constants</h3>
+The following types are nested within the <tt>string</tt> class:
+<br><a NAME="strings4"></a>
+<h4>
+Types</h4>
+
+<pre>size_type
+difference_type
+iterator
+const_iterator
+reverse_iterator
+const_reverse_iterator</pre>
+<a NAME="strings5"></a>
+<h4>
+Constants</h4>
+
+<pre>const size_type npos;&nbsp;&nbsp; // Maximum size_type</pre>
+<a NAME="strings6"></a>
+<h3>
+String Member Functions</h3>
+<a NAME="strings7"></a>
+<h4>
+Constructors</h4>
+
+<pre>string();
+string(const string&amp; s2); // Copy constructor
+string(const string&amp; s2, size_type pos2, size_type len2);
+string(const char* nts);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // convert from C-string
+string(const char* buf, size_type bufsize);
+string(size_type repetitions, char c);</pre>
+<a NAME="strings8"></a>
+<h4>
+Assignment Operators and Functions</h4>
+
+<pre>string&amp; operator=(const string&amp; s2); // normal assignment
+string&amp; operator=(const char* nts); // convert from C-string
+string&amp; operator=(char c); // assign a single character</pre>
+
+<pre>string&amp; assign(const string&amp; s2);
+string&amp; assign(const string&amp; s2, size_type pos2, size_type len2);
+string&amp; assign(const char* nts);
+string&amp; assign(const char* buf, size_type buflen);
+string&amp; assign(size_type repetitions, char c);</pre>
+
+<pre>void swap(string&amp; s2);</pre>
+<a NAME="strings9"></a>
+<h4>
+Iterator Functions</h4>
+
+<pre>iterator&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; begin();
+iterator&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; end();
+const_iterator&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; begin() const;
+const_iterator&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; end() const;
+reverse_iterator&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; rbegin();
+reverse_iterator&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; rend();
+const_reverse_iterator rbegin() const;
+const_reverse_iterator rend()&nbsp;&nbsp; const;</pre>
+<a NAME="strings10"></a>
+<h4>
+Size and Capacity</h4>
+
+<pre>size_type size() const;
+size_type length() const; // same as size()
+size_type max_size() const;
+void resize(size_type size, char c = '\0');
+void clear();
+bool empty() const;</pre>
+
+<pre>size_type capacity() const;
+void reserve(size_type capacity = 0);</pre>
+<a NAME="strings11"></a>
+<h4>
+Element Access</h4>
+
+<pre>char&amp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; operator[](size_type pos);
+const char&amp; operator[](size_type pos) const;
+char&amp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; at(size_type pos);
+const char&amp; at(size_type pos) const;</pre>
+<a NAME="strings12"></a>
+<h4>
+Append Functions and Operators</h4>
+
+<pre>string&amp; append(const string&amp; s2);
+string&amp; append(const string&amp; s2, size_type pos2, size_type len2);
+string&amp; append(const char* nts);
+string&amp; append(const char* buf, size_type buflen);
+string&amp; append(size_type repetitions, char c);</pre>
+
+<pre>string&amp; operator+=(const string&amp; s2);
+string&amp; operator+=(const char* nts);
+string&amp; operator+=(char c);</pre>
+<a NAME="strings13"></a>
+<h4>
+Insert Functions</h4>
+
+<pre>string&amp; insert(size_type pos1, const string&amp; s2);
+string&amp; insert(size_type pos1, const string&amp; s2,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; size_type pos2, size_type len2);
+string&amp; insert(size_type pos1, const char* nts);
+string&amp; insert(size_type pos1, const char* buf, size_type buflen);
+string&amp; insert(size_type pos1, size_type repetitions, char c);</pre>
+
+<pre>iterator insert(iterator pos1, char c);
+void&nbsp;&nbsp;&nbsp;&nbsp; insert(iterator pos1, size_type repetitions, char c);</pre>
+<a NAME="strings14"></a>
+<h4>
+Erase Functions</h4>
+
+<pre>string&amp; erase(size_type pos = 0, size_type len = npos);
+iterator&amp; erase(iterator pos);
+iterator&amp; erase(iterator start, iterator finish);</pre>
+<a NAME="strings15"></a>
+<h4>
+Replace Functions</h4>
+
+<pre>string&amp; replace(size_type pos1, size_type len1, const string&amp; s2);
+string&amp; replace(size_type pos1, size_type len1, const string&amp; s2,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; size_type pos2, size_type len2);
+string&amp; replace(size_type pos1, size_type len1, const char* nts);
+string&amp; replace(size_type pos1, size_type len1,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; const char* buf, size_type buflen);
+string&amp; replace(size_type pos1, size_type len1,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; size_type repetitions, char c);</pre>
+
+<pre>string&amp; replace(iterator start, iterator finish, const string&amp; s2);
+string&amp; replace(iterator start, iterator finish, const char* nts);
+string&amp; replace(iterator start, iterator finish,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; const char* buf, size_type buflen);
+string&amp; replace(iterator start, iterator finish,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; size_type repetitions, char c);</pre>
+<a NAME="strings16"></a>
+<h4>
+Comparison Functions</h4>
+
+<pre>// compare function returns -1 if *this &lt; s2, 0 if *this == s2
+// and +1 if *this > s2.
+int compare(const string&amp; s2) const;
+int compare(size_type pos1, size_type len1, const string&amp; s2);
+int compare(size_type pos1, size_type len1, const string&amp; s2,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; size_type pos2, size_type len2);
+int compare(const char* nts);
+int compare(size_type pos1, size_type len1, const char* nts);
+int compare(size_type pos1, size_type len1,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; const char* buf, size_type buflen);</pre>
+<a NAME="strings17"></a>
+<h4>
+Substrings</h4>
+
+<pre>string substr(pos = 0, len = npos) const;</pre>
+
+<pre>// This constructor is repeated here because it creates substring
+string(const string&amp; s2, size_type pos2, size_type len2);</pre>
+<a NAME="strings18"></a>
+<h4>
+Conversions</h4>
+
+<pre>// This constructor is repeated here because it converts
+// a C string to a C++ string.
+string(const char* nts);</pre>
+
+<pre>const char* c_str() const; // Returns a null-terminated string
+const char* data() const;&nbsp; // Not null-terminated</pre>
+
+<pre>// Copy characters to an array. Does not append a null-terminator
+size_type copy(char* buf, size_type bufsize, size_type pos1 = 0) const;</pre>
+<a NAME="strings19"></a>
+<h4>
+Search Functions</h4>
+
+<pre>size_type find(const string&amp; s2, size_type pos1);
+size_type find(const char* nts, size_type pos1);
+size_type find(const char* buf, size_type pos1, size_type bufsize);
+size_type find(char c, size_type pos1);</pre>
+
+<pre>size_type rfind(const string&amp; s2, size_type pos1);
+size_type rfind(const char* nts, size_type pos1);
+size_type rfind(const char* buf, size_type pos1, size_type bufsize);
+size_type rfind(char c, size_type pos1);</pre>
+
+<pre>size_type find_first_of(const string&amp; s2, size_type pos1);
+size_type find_first_of(const char* nts, size_type pos1);
+size_type find_first_of(const char* buf, size_type pos1, size_type bufsize);
+size_type find_first_of(char c, size_type pos1);</pre>
+
+<pre>size_type find_last_of(const string&amp; s2, size_type pos1);
+size_type find_last_of(const char* nts, size_type pos1);
+size_type find_last_of(const char* buf, size_type pos1, size_type bufsize);
+size_type find_last_of(char c, size_type pos1);</pre>
+
+<pre>size_type find_first_not_of(const string&amp; s2, size_type pos1);
+size_type find_first_not_of(const char* nts, size_type pos1);
+size_type find_first_not_of(const char* buf, size_type pos1,&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; size_type bufsize);
+size_type find_first_not_of(char c, size_type pos1);</pre>
+
+<pre>size_type find_last_not_of(const string&amp; s2, size_type pos1);
+size_type find_last_not_of(const char* nts, size_type pos1);
+size_type find_last_not_of(const char* buf, size_type pos1,&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; size_type bufsize);
+size_type find_last_not_of(char c, size_type pos1);</pre>
+<a NAME="strings20"></a>
+<h3>
+String-Related Global Operators and Functions</h3>
+The following functions and operators are related to the <tt>string</tt>
+class but are not members of <tt>string</tt>. Along with the <tt>string</tt>
+class, the following definitions are in the <tt>&lt;string></tt> header:
+<pre>// String concatenation:
+string operator+(const string&amp; s1, const string&amp; s2);
+string operator+(const char* nts, const string&amp; s2);
+string operator+(char c, const string&amp; s2);
+string operator+(const string&amp; s1, const char* nts);
+string operator+(const string&amp; s1, char c);</pre>
+
+<pre>// Equal
+bool operator==(const string&amp; s1, const string&amp; s2);
+bool operator==(const char* nts, const string&amp; s2);
+bool operator==(const string&amp; s1, const char* nts);</pre>
+
+<pre>// Not-equal
+bool operator!=(const string&amp; s1, const string&amp; s2);
+bool operator!=(const char* nts, const string&amp; s2);
+bool operator!=(const string&amp; s1, const char* nts);</pre>
+
+<pre>// Ordering:
+bool operator&lt;(const string&amp; s1, const string&amp; s2);
+bool operator&lt;(const char* nts, const string&amp; s2);
+bool operator&lt;(const string&amp; s1, const char* nts);</pre>
+
+<pre>// Greater than:
+bool operator>(const string&amp; s1, const string&amp; s2);
+bool operator>(const char* nts, const string&amp; s2);
+bool operator>(const string&amp; s1, const char* nts);</pre>
+
+<pre>// Less-than or equal-to:
+bool operator&lt;=(const string&amp; s1, const string&amp; s2);
+bool operator&lt;=(const char* nts, const string&amp; s2);
+bool operator&lt;=(const string&amp; s1, const char* nts);</pre>
+
+<pre>// Greater-than or equal-to:
+bool operator>=(const string&amp; s1, const string&amp; s2);
+bool operator>=(const char* nts, const string&amp; s2);
+bool operator>=(const string&amp; s1, const char* nts);</pre>
+
+<pre>// Input and output
+ostream&amp; operator&lt;&lt;(ostream&amp; os, const string&amp; s);
+istream&amp; operator>>(istream&amp; is, string&amp; s);
+istream&amp; getline(istream&amp; is, string&amp; s, char delimiter = '\n');</pre>
+<a NAME="containers"></a>
+<h2>
+Containers</h2>
+<a NAME="containers1"></a>
+<h3>
+Container Types</h3>
+<b>Note</b>: All container classes have an additional <tt>allocator</tt>
+template parameter that defaults to class <tt>allocator&lt;pair&lt;const
+K, T> ></tt> for <tt>map</tt> and <tt>multimap</tt> and <tt>allocator&lt;T></tt>
+for all other containers. The <tt>allocator</tt> parameter is omitted here
+for clarity.
+<br><a NAME="containers2"></a>
+<h4>
+Sequence Containers</h4>
+&nbsp;
+<table BORDER=0 CELLPADDING=2 WIDTH="100%" >
+<tr>
+<td VALIGN=TOP WIDTH="80%"><u>Class definition</u></td>
+
+<td VALIGN=TOP WIDTH="20%"><u>Header file</u></td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="80%"><tt>template &lt;class T> class vector;</tt></td>
+
+<td VALIGN=TOP WIDTH="20%"><tt>&lt;vector></tt></td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="80%"><tt>template &lt;class T> class deque;</tt></td>
+
+<td VALIGN=TOP WIDTH="20%"><tt>&lt;deque></tt></td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="80%"><tt>template &lt;class T> class list;</tt></td>
+
+<td VALIGN=TOP WIDTH="20%"><tt>&lt;list></tt></td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="80%"><tt>class string; </tt>(see also separate section
+on strings)
+<br>(A <tt>string</tt> can be used as a sequence container with element
+type <tt>char</tt>)</td>
+
+<td VALIGN=TOP WIDTH="20%"><tt>&lt;string></tt></td>
+</tr>
+</table>
+<a NAME="containers3"></a>
+<h4>
+Sorted Associative Containers</h4>
+&nbsp;
+<table BORDER=0 CELLPADDING=2 WIDTH="100%" >
+<tr>
+<td VALIGN=TOP WIDTH="80%"><u>Class definition</u></td>
+
+<td VALIGN=TOP WIDTH="20%"><u>Header file</u></td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="80%"><tt>template &lt;class T> class set;</tt></td>
+
+<td VALIGN=TOP WIDTH="20%"><tt>&lt;set></tt></td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="80%"><tt>template &lt;class T> class multiset;</tt></td>
+
+<td VALIGN=TOP WIDTH="20%"><tt>&lt;set></tt></td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="80%"><tt>template &lt;class K, class T, class Comp>
+class map;</tt></td>
+
+<td VALIGN=TOP WIDTH="20%"><tt>&lt;map></tt></td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="80%"><tt>template &lt;class K, class T, class Comp>
+class multimap;</tt></td>
+
+<td VALIGN=TOP WIDTH="20%"><tt>&lt;map></tt></td>
+</tr>
+</table>
+<a NAME="containers4"></a>
+<h3>
+Nested Types for All Containers</h3>
+The following types are defined within all container classes.
+<pre>value_type
+iterator
+const_iterator
+reverse_iterator
+const_reverse_iterator
+size_type
+difference_type</pre>
+<a NAME="containers5"></a>
+<h3>
+Member Functions for All Containers</h3>
+The following operations are common for all container types unless otherwise
+noted. The word <i>container</i> means one of the eight container classes
+listed above. Performance characteristics are in terms of the number of
+element operations involved. For example, the performance of <tt>insert</tt>
+depends on the number of elements that must be moved to perform the insertion.&nbsp;
+<table BORDER=0 CELLPADDING=2 WIDTH="100%" >
+<tr>
+<th ALIGN=LEFT VALIGN=TOP WIDTH="75%"><u>Function</u></th>
+
+<th ALIGN=LEFT VALIGN=TOP WIDTH="25%"><u>Performance</u></th>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="75%"><i>container</i> <tt>(); </tt>(Default Constructor)</td>
+
+<td VALIGN=TOP WIDTH="25%">constant</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="75%"><i>container</i> <tt>(const </tt><i>container</i>
+<tt>&amp; c2); </tt>(Copy constructor)</td>
+
+<td VALIGN=TOP WIDTH="25%">linear</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="75%"><tt>~</tt><i>container</i> <tt>(); </tt>(Destructor)</td>
+
+<td VALIGN=TOP WIDTH="25%">linear</td>
+</tr>
+
+<tr>
+<td><i>container</i> <tt>operator=(const</tt> <i>container</i><tt>&amp;
+c2); </tt>(Assignment operator)</td>
+
+<td>linear</td>
+</tr>
+
+<tr>
+<td><tt>void swap(const </tt><i>container</i> <tt>&amp; c2);</tt></td>
+
+<td>constant</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="75%"><tt>iterator begin();</tt>
+<br><tt>const_iterator begin() const;</tt></td>
+
+<td VALIGN=TOP WIDTH="25%">constant</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="75%"><tt>iterator end();</tt>
+<br><tt>const_iterator end() const;</tt></td>
+
+<td VALIGN=TOP WIDTH="25%">constant</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="75%"><tt>reverse_iterator rbegin();</tt>
+<br><tt>const_reverse_iterator rbegin() const;</tt></td>
+
+<td VALIGN=TOP WIDTH="25%">constant</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="75%"><tt>reverse_iterator rend();</tt>
+<br><tt>const_reverse_iterator rend() const;</tt></td>
+
+<td VALIGN=TOP WIDTH="25%">constant</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="75%"><tt>size_type size() const;</tt></td>
+
+<td VALIGN=TOP WIDTH="25%">constant</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="75%"><tt>size_type max_size() const;</tt></td>
+
+<td VALIGN=TOP WIDTH="25%">constant</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="75%"><tt>bool empty() const;</tt></td>
+
+<td VALIGN=TOP WIDTH="25%">constant</td>
+</tr>
+
+<tr>
+<td><tt>void clear();</tt></td>
+
+<td>linear</td>
+</tr>
+</table>
+<a NAME="containers6"></a>
+<h3>
+Container-Related Global Operators</h3>
+The following operators are not members of any container class, but are
+implemented for all standard containers. The word <i>container</i> means
+one of the eight standard container classes. Both arguments must be of
+the same type.. They all take time that is proportional to the number of
+elements in the smaller argument (i.e. linear time).
+<p><tt>bool operator==(const </tt><i>container</i> <tt>&amp; c1, const
+</tt><i>container</i> <tt>&amp; c2);</tt>
+<br><tt>bool operator!=(const </tt><i>container</i> <tt>&amp; c1, const
+</tt><i>container</i>
+<tt>&amp; c2);</tt>
+<br><tt>bool operator&lt;(const </tt><i>container</i> <tt>&amp; c1, const
+</tt><i>container</i> <tt>&amp; c2);</tt>
+<br><tt>bool operator>(const </tt><i>container</i> <tt>&amp; c1, const
+</tt><i>container</i> <tt>&amp; c2);</tt>
+<br><tt>bool operator&lt;=(const </tt><i>container</i> <tt>&amp; c1, const
+</tt><i>container</i> <tt>&amp; c2);</tt>
+<br><tt>bool operator>=(const </tt><i>container</i> <tt>&amp; c1, const
+</tt><i>container</i> <tt>&amp; c2);</tt>
+<br><a NAME="containers7"></a>
+<h3>
+Sequence Containers Member Functions</h3>
+Not all of the following operations are available for all sequence containers.
+The <i>containers</i> column contains a combination of the following codes
+to indicate which containers support the specified operation: <tt>V = vector,
+D = deque, L = list, S = string</tt>.
+<p>The <tt>InIter</tt> parameters to the template member functions are
+not necessarily of the same type as <tt>iterator</tt>. These functions
+copy elements from another container that may not be of the same type.
+Compilers that do not support template members will not support these functions.&nbsp;
+<table BORDER=0 CELLPADDING=2 WIDTH="100%" >
+<tr>
+<th ALIGN=LEFT VALIGN=TOP WIDTH="75%"><u>Function</u></th>
+
+<th ALIGN=LEFT VALIGN=TOP WIDTH="15%"><u>Performance</u></th>
+
+<th ALIGN=LEFT VALIGN=TOP WIDTH="10%"><u>containers</u></th>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="75%"><i>container</i> <tt>(size_type num, const T&amp;
+val = T()); </tt>(construct n copies of t)</td>
+
+<td VALIGN=TOP WIDTH="15%">linear</td>
+
+<td VALIGN=TOP WIDTH="10%"><tt>VDLS</tt></td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="75%"><tt>template&lt;class InIter></tt>
+<br><i>container</i><tt>(InIter start, InIter finish); </tt>(construct
+from iterator range)</td>
+
+<td VALIGN=TOP WIDTH="15%">linear</td>
+
+<td VALIGN=TOP WIDTH="10%"><tt>VDLS</tt></td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="75%"><tt>void assign(size_type num, const T&amp;
+val);</tt></td>
+
+<td VALIGN=TOP WIDTH="15%">linear</td>
+
+<td VALIGN=TOP WIDTH="10%"><tt>VDLS</tt></td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="75%"><tt>template&lt;class InIter></tt>
+<br><tt>void assign(InIter start, InIter finish);</tt></td>
+
+<td VALIGN=TOP WIDTH="15%">linear</td>
+
+<td VALIGN=TOP WIDTH="10%"><tt>VDLS</tt></td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="75%"><tt>void resize(size_type num, const T&amp;
+val = T());</tt></td>
+
+<td VALIGN=TOP WIDTH="15%">linear</td>
+
+<td VALIGN=TOP WIDTH="10%"><tt>VDLS</tt></td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="75%"><tt>iterator insert(iterator pos, const T&amp;
+t);</tt></td>
+
+<td VALIGN=TOP WIDTH="15%">constant for list,
+<br>linear for others</td>
+
+<td VALIGN=TOP WIDTH="10%"><tt>VDLS</tt></td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="75%"><tt>void insert(iterator pos, size_type num,
+const T&amp; t);</tt></td>
+
+<td VALIGN=TOP WIDTH="15%">constant for list,
+<br>linear for others</td>
+
+<td VALIGN=TOP WIDTH="10%"><tt>VDLS</tt></td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="75%"><tt>template&lt;class InIter></tt>
+<br><tt>void insert(iterator pos, InIter start, InIter finish);</tt></td>
+
+<td VALIGN=TOP WIDTH="10%">linear</td>
+
+<td VALIGN=TOP><tt>VDLS</tt></td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="75%"><tt>iterator erase(iterator pos);</tt></td>
+
+<td VALIGN=TOP WIDTH="15%">constant for list,
+<br>linear for others</td>
+
+<td VALIGN=TOP WIDTH="10%"><tt>VDLS</tt></td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="75%"><tt>iterator erase(iterator start, iterator
+finish);</tt></td>
+
+<td VALIGN=TOP WIDTH="15%">linear</td>
+
+<td VALIGN=TOP WIDTH="10%"><tt>VDLS</tt></td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="75%"><tt>T&amp; front();</tt>
+<br><tt>const T&amp; front() const;</tt></td>
+
+<td VALIGN=TOP WIDTH="15%">constant</td>
+
+<td VALIGN=TOP WIDTH="10%"><tt>VDL-</tt></td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="75%"><tt>T&amp; back();</tt>
+<br><tt>const T&amp; back() const;</tt></td>
+
+<td VALIGN=TOP WIDTH="15%">constant</td>
+
+<td VALIGN=TOP WIDTH="10%"><tt>VDL-</tt></td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="75%"><tt>void push_front(const T&amp; t);</tt></td>
+
+<td VALIGN=TOP WIDTH="15%">constant</td>
+
+<td VALIGN=TOP WIDTH="10%"><tt>-DL-</tt></td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="75%"><tt>void push_back(const T&amp; t);</tt></td>
+
+<td VALIGN=TOP WIDTH="15%">constant</td>
+
+<td VALIGN=TOP WIDTH="10%"><tt>VDLS</tt></td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="75%"><tt>void pop_front();</tt></td>
+
+<td VALIGN=TOP WIDTH="15%">constant</td>
+
+<td VALIGN=TOP WIDTH="10%"><tt>-DL-</tt></td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="75%"><tt>void pop_back();</tt></td>
+
+<td VALIGN=TOP WIDTH="15%">constant</td>
+
+<td VALIGN=TOP WIDTH="10%"><tt>VDL-</tt></td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="75%"><tt>T&amp; operator[](size_type index);</tt>
+<br><tt>const T&amp; operator[](size_type index) const;</tt></td>
+
+<td VALIGN=TOP WIDTH="15%">constant</td>
+
+<td VALIGN=TOP WIDTH="10%"><tt>VD-S</tt></td>
+</tr>
+
+<tr>
+<td VALIGN=TOP><tt>T&amp; at(size_type index);</tt>
+<br><tt>const T&amp; at(size_type index) const;</tt></td>
+
+<td VALIGN=TOP>constant</td>
+
+<td VALIGN=TOP><tt>VD-S</tt></td>
+</tr>
+
+<tr>
+<td><tt>size_type capacity() const;</tt></td>
+
+<td>constant</td>
+
+<td><tt>V--S</tt></td>
+</tr>
+
+<tr>
+<td><tt>void reserve(size_type num);</tt></td>
+
+<td>linear</td>
+
+<td><tt>V--S</tt></td>
+</tr>
+</table>
+<a NAME="containers8"></a>
+<h3>
+Sorted Associative Containers</h3>
+<a NAME="containers9"></a>
+<h4>
+Nested Types</h4>
+&nbsp;
+<table BORDER=0 CELLPADDING=2 WIDTH="100%" >
+<tr>
+<td WIDTH="33%"><u><tt>set&lt;T></tt> and <tt>multiset&lt;T></tt></u></td>
+
+<td WIDTH="34%"><u><tt>map&lt;K,T></tt> and <tt>multimap&lt;K,T></tt></u></td>
+</tr>
+
+<tr>
+<td WIDTH="33%"><tt>typedef T key_type;</tt></td>
+
+<td WIDTH="34%"><tt>typedef K key_type;</tt></td>
+</tr>
+
+<tr>
+<td WIDTH="33%"><tt>typedef T value_type;</tt></td>
+
+<td WIDTH="34%"><tt>typedef pair&lt;const K, t> value_type;</tt></td>
+</tr>
+
+<tr>
+<td WIDTH="33%"><tt>typedef Comp key_compare;</tt></td>
+
+<td WIDTH="34%"><tt>typedef Comp key_compare;</tt></td>
+</tr>
+</table>
+<a NAME="containers10"></a>
+<h4>
+Member Functions</h4>
+Not all of the following operations are available for all associative containers.
+The <i>containers</i> column contains a combination of the following codes
+to indicate which containers support the specified operation: <tt>s = set,
+S = multiset, m = map, M = multimap</tt>.
+<p>The <tt>InIter</tt> parameters to the template member functions are
+not necessarily of the same type as <tt>iterator</tt>. These functions
+copy elements from another container that may not be of the same type.
+Compilers that do not support template members will not support these functions.&nbsp;
+<table BORDER=0 CELLPADDING=2 WIDTH="100%" >
+<tr>
+<th ALIGN=LEFT VALIGN=TOP WIDTH="75%"><u>Function</u></th>
+
+<th ALIGN=LEFT VALIGN=TOP WIDTH="15%"><u>Performance</u></th>
+
+<th ALIGN=LEFT VALIGN=TOP WIDTH="10%"><u>containers</u></th>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="75%"><i>container</i> <tt>(Comp c = Comp()); </tt>(Constructor)</td>
+
+<td VALIGN=TOP WIDTH="15%">constant</td>
+
+<td VALIGN=TOP WIDTH="10%"><tt>sSmM</tt></td>
+</tr>
+
+<tr>
+<td VALIGN=TOP><tt>template &lt;class InIter></tt>
+<br><i>container</i><tt>(InIter start, InIter finish, Comp c = Comp());</tt></td>
+
+<td VALIGN=TOP>N log(N)</td>
+
+<td VALIGN=TOP><tt>sSmM</tt></td>
+</tr>
+
+<tr>
+<td VALIGN=TOP><tt>key_compare key_comp() const;</tt></td>
+
+<td VALIGN=TOP>constant</td>
+
+<td VALIGN=TOP><tt>sSmM</tt></td>
+</tr>
+
+<tr>
+<td VALIGN=TOP><tt>value_compare value_comp() const;</tt></td>
+
+<td VALIGN=TOP>constant</td>
+
+<td VALIGN=TOP><tt>sSmM</tt></td>
+</tr>
+
+<tr>
+<td VALIGN=TOP><tt>pair&lt;iterator, bool> insert(const value_type&amp;
+v);</tt>
+<br>(unique insert)</td>
+
+<td VALIGN=TOP>logarithmic</td>
+
+<td VALIGN=TOP><tt>s-m-</tt></td>
+</tr>
+
+<tr>
+<td VALIGN=TOP><tt>iterator insert(const value_type&amp; v); </tt>(non-unique
+insert)</td>
+
+<td VALIGN=TOP>logarithmic</td>
+
+<td VALIGN=TOP><tt>-S-M</tt></td>
+</tr>
+
+<tr>
+<td VALIGN=TOP><tt>template &lt;class InIter></tt>
+<br><tt>insert(InIter start, InIter finish)</tt></td>
+
+<td VALIGN=TOP>N Log(N)
+<br>(approx.)</td>
+
+<td VALIGN=TOP><tt>sSmM</tt></td>
+</tr>
+
+<tr>
+<td VALIGN=TOP><tt>iterator find(const K&amp; k);</tt>
+<br><tt>const_iterator find(const K&amp; k) const;</tt></td>
+
+<td VALIGN=TOP>logarithmic</td>
+
+<td VALIGN=TOP><tt>sSmM</tt></td>
+</tr>
+
+<tr>
+<td VALIGN=TOP><tt>iterator lower_bound(const K&amp; k);</tt>
+<br><tt>const_iterator lower_bound(const K&amp; k) const;</tt></td>
+
+<td VALIGN=TOP>logarithmic</td>
+
+<td VALIGN=TOP><tt>sSmM</tt></td>
+</tr>
+
+<tr>
+<td VALIGN=TOP><tt>iterator upper_bound(const K&amp; k);</tt>
+<br><tt>const_iterator upper_bound(const K&amp; k) const;</tt></td>
+
+<td VALIGN=TOP>logarithmic</td>
+
+<td VALIGN=TOP><tt>sSmM</tt></td>
+</tr>
+
+<tr>
+<td VALIGN=TOP><tt>pair&lt;iterator,iterator> equal_range(const K&amp;
+k);</tt>
+<br><tt>pair&lt;const_iterator,const_iterator></tt>
+<br><tt>equal_range(const K&amp; k) const;</tt></td>
+
+<td VALIGN=TOP>logarithmic</td>
+
+<td VALIGN=TOP><tt>sSmM</tt></td>
+</tr>
+
+<tr>
+<td VALIGN=TOP><tt>T&amp; operator[](const K&amp; k);</tt></td>
+
+<td VALIGN=TOP>logarithmic</td>
+
+<td VALIGN=TOP><tt>--m-</tt></td>
+</tr>
+
+<tr>
+<td VALIGN=TOP><tt>size_type erase(const K&amp; k);</tt></td>
+
+<td VALIGN=TOP>logarithmic</td>
+
+<td VALIGN=TOP><tt>sSmM</tt></td>
+</tr>
+
+<tr>
+<td VALIGN=TOP><tt>size_type count(const K&amp; k) const;</tt></td>
+
+<td VALIGN=TOP>logarithmic</td>
+
+<td VALIGN=TOP><tt>sSmM</tt></td>
+</tr>
+</table>
+<a NAME="containers11"></a>
+<h3>
+Special List Functions</h3>
+The list container provides special functions to manipulate the contents
+of the list without actually copying the elements. This can provide a significant
+efficiency gain in the (relatively few) cases where this kind of manipulation
+is needed. Here is a concise description of these special functions:
+<pre>void splice(iterator pos, list&amp; list2); // Move all elements of list2
+void splice(iterator pos, list&amp; list2, iterator i2);
+void splice(iterator pos, list&amp; list2, iterator start2, iterator end2);</pre>
+
+<blockquote>The <tt>splice</tt> functions removes elements from <tt>list2</tt>
+and inserts them into <tt>*this</tt>. The data structures are modified
+in such a way that the elements are simply moved between the lists, not
+copied or deleted.</blockquote>
+
+<pre>void remove(const T&amp; value);
+template &lt;class UnaryPred> void remove(UnaryPred pred);</pre>
+
+<blockquote>Remove all elements that match the specified value or predicate.</blockquote>
+
+<pre>void unique();
+template &lt;class BinPred> unique(BinPred eq);</pre>
+
+<blockquote>For each sequence of equal elements within the list, removes
+all but the first. If a predicate argument is supplied, it is used instead
+of <tt>==</tt> to compare elements.</blockquote>
+
+<pre>void sort();
+template &lt;class Compare> sort(Compare cmp);</pre>
+
+<blockquote>Sorts the list. If a <tt>Compare</tt> predicate is supplied,
+it is used to compare the elements instead of the <tt>&lt;</tt> operator.</blockquote>
+
+<pre>void merge(list&amp; list2);
+template &lt;class Compare> merge(list&amp; list2, Compare cmp);</pre>
+
+<blockquote>Merges two sorted lists into one. The elements are removed
+from <tt>list2</tt> and added to <tt>*this</tt>. If a <tt>Compare</tt>
+predicate is supplied, it is used to compare the elements instead of the
+<tt>&lt;</tt> operator.</blockquote>
+
+<pre>void reverse();</pre>
+
+<blockquote>Reverses the order of elements in the list.</blockquote>
+<a NAME="containers12"></a>
+<h3>
+Container Adaptors</h3>
+<a NAME="containers13"></a>
+<h4>
+Stack</h4>
+
+<pre><b>#include &lt;stack></b></pre>
+
+<pre>template &lt;class T, class Container = deque&lt;T> >
+class stack
+{
+public:
+&nbsp; // Constructor
+&nbsp; explicit stack(const Container&amp; c = Container());</pre>
+
+<pre>&nbsp; bool empty() const;
+&nbsp; size_type size() const;
+&nbsp; value_type&amp; top();
+&nbsp; const value_type&amp; top() const;
+&nbsp; void push(const value_type&amp; t);
+&nbsp; void pop();
+};</pre>
+<a NAME="containers14"></a>
+<h4>
+Queue</h4>
+
+<pre><b>#include &lt;queue></b></pre>
+
+<pre>template &lt;class T, class Container = deque&lt;T> >
+class queue
+{
+public:
+&nbsp; // Constructor
+&nbsp; explicit queue(const Container&amp; c = Container());</pre>
+
+<pre>&nbsp; bool empty() const;
+&nbsp; size_type size() const;
+&nbsp; value_type&amp; front();
+&nbsp; const value_type&amp; front() const;
+&nbsp; value_type&amp; back();
+&nbsp; const value_type&amp; back() const;
+&nbsp; void push(const value_type&amp; t);
+&nbsp; void pop();
+};</pre>
+<a NAME="containers15"></a>
+<h4>
+Priority_queue</h4>
+
+<pre><b>#include &lt;queue></b></pre>
+
+<pre>template &lt;class T, class Container = vector&lt;T>,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; class Compare = less&lt;Container::value_type> >
+class priority_queue
+{
+public:
+&nbsp; // Constructors
+&nbsp; explicit priority_queue(const Compare&amp; comp = Compare(),
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; const Container&amp; c = Container());
+&nbsp; template &lt;class InIter>
+&nbsp; priority_queue(InIter start, InIter finish,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; const Compare&amp; comp = Compare(),
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; const Container&amp; c = Container());</pre>
+
+<pre>&nbsp; bool empty() const;
+&nbsp; size_type size() const;
+&nbsp; const value_type&amp; top() const;&nbsp; // const version only
+&nbsp; void push(const value_type&amp; t);
+&nbsp; void pop();
+};</pre>
+<a NAME="iterators"></a>
+<h2>
+Iterators</h2>
+<a NAME="iterators1"></a>
+<h3>
+Insertion Iterators</h3>
+In each function prototype below, <i>output-iterator</i> represents a standard
+library classes that is not usually used directly. The result of calling
+one of these functions is generally passed to an algorithm.
+<pre><b>#include &lt;iterator></b></pre>
+<i>output-iterator</i> <tt>back_inserter(Container&amp; c);</tt>
+<br><i>output-iterator</i> <tt>front_inserter(Container&amp; c);</tt>
+<br><i>output-iterator</i> <tt>inserter(Container&amp; c, Iterator i);</tt>
+<br><a NAME="iterators2"></a>
+<h3>
+Iterator Functions</h3>
+
+<pre><b>#include &lt;iterator></b></pre>
+
+<pre>template&lt;class Iter, difference_type>
+void advance(Iter&amp; i, difference_type d);</pre>
+
+<pre>template&lt;class Iter>
+difference_type distance(Iter start, Iter finish);</pre>
+<a NAME="function"></a>
+<h2>
+Function Objects</h2>
+<a NAME="function1"></a>
+<h3>
+Function Object Base Classes</h3>
+
+<pre><b>#include &lt;functional></b></pre>
+
+<pre>template &lt;class arg, class ret>
+struct unary_function
+{
+&nbsp; typedef arg argument_type;
+&nbsp; typedef ret result_type;
+};</pre>
+
+<pre>template &lt;class arg1, class arg2, class ret>
+struct binary_function
+{
+&nbsp; typedef arg1 first_argument_type;
+&nbsp; typedef arg2 second_argument_type;
+&nbsp; typedef ret&nbsp; result_type;
+};</pre>
+<a NAME="function2"></a>
+<h3>
+Standard Function Objects</h3>
+
+<pre><b>#include &lt;functional></b></pre>
+
+<pre>// Arithmetic function objects
+template &lt;class T> struct plus;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // binary +
+template &lt;class T> struct minus;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // binary -
+template &lt;class T> struct multiplies; // binary *
+template &lt;class T> struct divides;&nbsp;&nbsp;&nbsp; // binary /
+template &lt;class T> struct modulus;&nbsp;&nbsp;&nbsp; // binary %
+template &lt;class T> struct negate;&nbsp;&nbsp;&nbsp;&nbsp; // unary -</pre>
+
+<pre>// Comparisons
+template &lt;class T> struct equal_to;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // ==
+template &lt;class T> struct not_equal_to;&nbsp; // !=
+template &lt;class T> struct less;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // &lt;
+template &lt;class T> struct greater;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // >
+template &lt;class T> struct less_equal;&nbsp;&nbsp;&nbsp; // &lt;=
+template &lt;class T> struct greater_equal; // >=</pre>
+
+<pre>// Logical operations
+template &lt;class T> struct logical_and; // binary &amp;&amp;
+template &lt;class T> struct logical_or;&nbsp; // binary ||
+template &lt;class T> struct logical_not; // unary !</pre>
+<a NAME="function3"></a>
+<h3>
+Negator and Binder Functions</h3>
+The result of calling one of these adaptors is generally passed to an algorithm.
+In each prototype below, <i>unary-function-object
+</i>or <i>binary-function-object</i>
+represents a standard library template class that is not usually referenced
+directly but is just passed to another template function.
+<pre><b>#include &lt;functional></b></pre>
+<tt>template &lt;class UnaryPred></tt>
+<br><i>unary-function-object</i><tt> not1(const UnaryPred&amp; pred);</tt>
+<p><tt>template &lt;class BinaryPred></tt>
+<br><i>binary-function-object</i><tt> not2(const BinaryPred&amp; pred);</tt>
+<p><tt>template &lt;class BinaryPred, class T></tt>
+<br><i>unary-function-object</i><tt> bind1st(const BinaryPred&amp; pred,
+const T&amp; val);</tt>
+<p><tt>template &lt;class BinaryPred, class T></tt>
+<br><i>unary-function-object</i><tt> bind2nd(const BinaryPred&amp; pred,
+const T&amp; val);</tt>
+<br><a NAME="function4"></a>
+<h3>
+Function Pointer Adaptors</h3>
+These adaptors convert function pointers into function objects. The result
+of calling one of these adaptors is generally passed to an algorithm. In
+the prototypes below, <i>function-object
+</i>represents a standard library
+template class that is not usually referenced directly but is just passed
+to another template function
+<br><a NAME="function5"></a>
+<h4>
+Pointer-to-Function Adaptors</h4>
+The result of calling <tt>ptr_fun</tt> will be a unary function object
+if <tt>func</tt> takes one argument or a binary function object if <tt>func</tt>
+takes two arguments.
+<p><tt>template &lt;class ret, class Arg></tt>
+<br><i>unary-function-object</i><tt> ptr_fun(ret (*func)(Arg));</tt>
+<p><tt>template &lt;class ret, class Arg1, class Arg2></tt>
+<br><i>binary-function-object</i><tt> ptr_fun(ret (*func)(Arg1, arg2));</tt>
+<br><a NAME="function6"></a>
+<h4>
+Pointer-to-Member-Function Adaptors</h4>
+The result of calling <tt>mem_fun</tt> is function object that takes a
+<i>pointer</i> to <tt>T</tt> as its first argument. The result of calling
+<tt>mem_fun_ref</tt> is a function object that takes a <i>reference</i>
+to <tt>T</tt> as its first argument. The first argument is used as the
+<tt>this</tt> value in the resulting member function call. If <tt>memfunc</tt>
+takes an argument, it is passed as the second argument to the function
+object. The <tt>memfunc</tt> pointer can point to a <tt>const</tt> or a
+non-<tt>const</tt> member function (although some non-conforming implementations
+do not yet support the <tt>const</tt> version).
+<p><tt>// Returns a unary function object taking a T* argument</tt>
+<br><tt>template &lt;class ret, class T></tt>
+<br><i>unary-function-object</i><tt> mem_fun(ret (T::*f)());</tt>
+<p><tt>// Returns a binary function object taking T* and Arg arguments</tt>
+<br><tt>template &lt;class ret, class T, class Arg></tt>
+<br><i>binary-function-object</i><tt> mem_fun(ret (T::*f)(Arg));</tt>
+<p><tt>// Returns a unary function object taking a T&amp; argument</tt>
+<br><tt>template &lt;class ret, class T></tt>
+<br><i>unary-function-object</i><tt> mem_fun_ref(ret (T::*f)());</tt>
+<p><tt>// Returns a binary function object taking T&amp; and Arg arguments</tt>
+<br><tt>template &lt;class ret, class T, class Arg></tt>
+<br><i>binary-function-object</i><tt> mem_fun_ref(ret (T::*f)(Arg));</tt>
+<p><tt>// Returns a unary function object taking a const T* argument</tt>
+<br><tt>template &lt;class ret, class T></tt>
+<br><i>unary-function-object</i><tt> mem_fun(ret (T::*f)() const);</tt>
+<p><tt>// Returns a binary function object taking const T* and Arg arguments</tt>
+<br><tt>template &lt;class ret, class T, class Arg></tt>
+<br><i>binary-function-object</i><tt> mem_fun(ret (T::*f)(Arg) const);</tt>
+<p><tt>// Returns a unary function object taking a const T&amp; argument</tt>
+<br><tt>template &lt;class ret, class T></tt>
+<br><i>unary-function-object</i><tt> mem_fun_ref(ret (T::*f)() const);</tt>
+<p><tt>// Returns a binary function object taking const T&amp; and Arg
+arguments</tt>
+<br><tt>template &lt;class ret, class T, class Arg></tt>
+<br><i>binary-function-object</i><tt> mem_fun_ref(ret (T::*f)(Arg) const);</tt>
+<br><a NAME="algorithms"></a>
+<h2>
+Algorithms</h2>
+Others have already done a good job of creating references for the standard
+algorithms. You can see a few at these locations:
+<p><a href="http://www.cs.rpi.edu/projects/STL/htdocs/stl.html">http://www.cs.rpi.edu/projects/STL/htdocs/stl.html</a>
+<p><a href="http://www.sgi.com/Technology/STL/">http://www.sgi.com/Technology/STL/</a>
+<p>The STL algorithms changed a bit when they were incorporated into the
+C++ Standard Library, one notable change from the above sources is in the
+<tt>count</tt> and <tt>count_if</tt> algorithms. Instead of passing the
+result in by reference, the new versions return the result directly. The
+return type, <tt>difference_type</tt>, is potentially different for each
+iterator type. In practice, however, <tt>long int </tt>will suffice for
+almost all cases. The new definitions are as follows:
+<pre>template &lt;class InIter, class T>
+difference_type count(InIter start, InIter finish, const T&amp; value);</pre>
+
+<pre>template &lt;class InIter, class UnaryPred>
+difference_type count_if(InIter start, InIter finish, UnaryPred pred);</pre>
+<a NAME="io"></a>
+<h2>
+Input/Output</h2>
+<a NAME="io1"></a>
+<h3>
+Stream Classes</h3>
+
+<pre><b>#include &lt;iostream>
+</b>class ios;
+class istream : virtual public ios;
+class ostream : virtual public ios;
+class iostream : public istream, public ostream;</pre>
+
+<pre><b>#include &lt;sstream>
+</b>class stringstream : public iostream;
+class istringstream : public istream;
+class ostringstream : public ostream;</pre>
+
+<pre><b>#include &lt;fstream>
+</b>class fstream : public iostream;
+class ifstream : public istream;
+class ofstream : public ostream;</pre>
+
+<pre><b>#include &lt;strstream> // (deprecated)
+</b>class strstream : public iostream
+class istrstream : public istream
+class ostrstream : public ostream</pre>
+<a NAME="io2"></a>
+<h3>
+<tt><font size=+2>ios</font></tt> Nested Types</h3>
+The following types are defined within class ios and are inherited by all
+of the stream classes. They are all integral types that work as either
+bit masks or enumerations.
+<pre>// Bitmask types: value can be the bit-wise OR of one or more of&nbsp;
+// the constants on the right
+ios::fmtflags = (see below)
+ios::iostate&nbsp; = ios::goodbit = 0, ios::badbit, ios::eofbit, ios::failbit
+ios::openmode = ios::in, ios::out, ios::trunc,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ios::app, ios::ate, ios::binary</pre>
+
+<pre>// Enumerated type: value can be one of the constants on the right
+ios::seekdir&nbsp; = ios::beg, ios::cur, ios::end</pre>
+<a NAME="io3"></a>
+<h3>
+Format Flags</h3>
+
+<pre>// The value of a fmtflags object is the bitwise OR of one or more
+// of the following flags:
+ios::boolalpha&nbsp; // show bools as "true" and "false" rather than 1 and 0
+ios::showbase&nbsp;&nbsp; // show "0x" or "0" in front of hex or octal numbers
+ios::showpos&nbsp;&nbsp;&nbsp; // put a "+" in front of positive numbers
+ios::showpoint&nbsp; // show decimal point on floats that have no fraction
+ios::skipws&nbsp;&nbsp;&nbsp;&nbsp; // skip whitespace on input (default)
+ios::unitbuf&nbsp;&nbsp;&nbsp; // flush buffer after each operation
+ios::uppercase&nbsp; // Use uppercase hex digits, floating-point exponents, etc.</pre>
+
+<pre>// Only one of the following justification adjustment flags should be set
+ios::left&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // left justify output in field width
+ios::right&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // right justify output in field width
+ios::internal&nbsp;&nbsp; // right justify but put prefix (sign, base, currency) at left</pre>
+
+<pre>// Only one of the following base flags should be set
+ios::dec&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // show integral values in decimal
+ios::hex&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // show integral values in hexadecimal
+ios::oct&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // show integral values in octal</pre>
+
+<pre>// Only one of the following floating point format flags should be set
+ios::fixed&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // fixed-point notation
+ios::scientific // scientific notation</pre>
+
+<pre>// The following masks are used to group mutually-exclusive flags
+ios::adjustfield = ios::left | ios::right | ios::internal
+ios::basefield&nbsp;&nbsp; = ios::dec | ios::hex | ios::oct
+ios::floatfield&nbsp; = ios::fixed | ios::scientific</pre>
+<a NAME="io4"></a>
+<h3>
+<tt><font size=+2>ios</font></tt> Member Functions</h3>
+The following member functions of the <tt>ios</tt> base class are inherited
+by <tt>istream</tt> and <tt>ostream</tt>.
+<pre>// Get/set format flags
+fmtflags flags() const;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // get all format flags
+fmtflags flags(fmtflags f);&nbsp;&nbsp;&nbsp; // set all format flags
+fmtflags setf(fmtflags f);&nbsp;&nbsp;&nbsp;&nbsp; // set one or more format flags
+fmtflags setf(fmtflags f, fmtflags g); // Set one format flag of a
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // mutually-exclusive group
+void unsetf(fmtflags mask);&nbsp;&nbsp;&nbsp; // clear one or more format flags</pre>
+
+<pre>// Get/set format variables (set functions return old value)
+int precision() const;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // get floating-point precision
+int precision(int p);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // set floating-point precision
+int width() const;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // get field width
+int width(int w);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // set field width
+char fill() const;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // get fill character
+char fill(char f);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // set fill character</pre>
+
+<pre>// Get/set error state
+bool good();&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // stream is in a good state
+bool eof();&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // end of file (end of stream) detected
+bool fail();&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Last operation failed (e.g. format error)
+bool bad();&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // I/O error
+void clear(iostate = ios::goodbit);&nbsp; // Clear/set all error bits
+void setstate(iostate state);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // set one or more error bits</pre>
+<a NAME="io5"></a>
+<h3>
+Unformatted Output Functions</h3>
+The following functions are available in <tt>ostream</tt>, <tt>iostream</tt>,
+and derived classes:
+<pre>ostream&amp; put(char c);
+ostream&amp; write(const char*, streamsize);
+ostream&amp; flush();</pre>
+<a NAME="io6"></a>
+<h3>
+Unformatted Input Functions</h3>
+The following functions are available in <tt>istream</tt>, <tt>iostream</tt>,
+and derived classes:
+<pre>int get();
+istream&amp; get(char&amp; c);
+istream&amp; get(char*, streamsize, term = '\n');&nbsp;&nbsp;&nbsp;&nbsp; // doesn't read term
+istream&amp; getline(char*, streamsize, term = '\n'); // discards term
+istream&amp; ignore(streamsize, term = eof);
+istream&amp; read(char*, streamsize);</pre>
+<a NAME="io7"></a>
+<h3>
+<tt><font size=+2>fstream</font></tt> Member Functions</h3>
+In addition to the members it inherits from <tt>iostream</tt> and <tt>ios</tt>,
+<tt>fstream</tt> supplies the following member functions. In the constructors
+and <tt>open</tt> functions, <i>default-mode</i> is <tt>ios::in</tt> for
+<tt>ifstream</tt>, <tt>ios::out</tt> for <tt>ofstream</tt>, and <tt>ios::in|ios::out</tt>
+for <tt>fstream</tt>:
+<pre>// Constructors (same constructors available for ifstream and ofstream)
+fstream();
+explicit fstream(const char* filename, ios::openmode mode = <i>default-mode</i>);</pre>
+
+<pre>// Functions to open and close files
+void open(const char* filename, ios::openmode mode = <i>default-mode</i>);
+void close();
+bool is_open();</pre>
+<a NAME="io8"></a>
+<h3>
+<tt><font size=+2>stringstream</font></tt> Member Functions</h3>
+In addition to the members it inherits from <tt>iostream</tt> and <tt>ios</tt>,
+<tt>stringstream</tt> supplies the following member functions. In the constructors,
+<i>default-mode</i> is <tt>ios::in</tt> for <tt>istringstream</tt>, <tt>ios::out</tt>
+for <tt>ostringstream</tt>, and <tt>ios::in|ios::out</tt> for <tt>stringstream</tt>:
+<pre>// Constructors (same constructors available for istringstream &amp; ostringstream)
+explicit stringstream(ios::openmode mode = <i>default-mode</i>);
+explicit stringstream(const string&amp; s, ios::openmode mode = <i>default-mode</i>);</pre>
+
+<pre>// Get/set string
+string str() const;
+void str(const string&amp; s);</pre>
+<a NAME="io9"></a>
+<h3>
+<tt><font size=+2>strstream</font></tt> Member Functions</h3>
+The <tt>strstream</tt> classes are <i>deprecated</i>, meaning that they
+may not be part of a future C++ standard. The <tt>stringstring</tt> classes
+are generally preferred. However, some legacy code still uses <tt>strstream</tt>
+and some library implementations do not yet support <tt>stringstream</tt>.
+<pre>// istrstream constructors:
+explicit istrstream(const char* s);&nbsp;&nbsp; // null-terminated
+istrstream(const char* s, streamsize size);</pre>
+
+<pre>// ostrstream constructors:
+ostrstream(); // dynamically-allocated string
+// string allocated by caller:
+ostrstream(char* s, streamsize size, ios::openmode = ios::out);</pre>
+
+<pre>// strstream constructors:
+strstream(); // dynamically-allocated string
+// string allocated by caller:
+ostrstream(char* s, streamsize size, ios::openmode = ios::in|ios::out);</pre>
+
+<pre>// istrstream, ostrstream and strstream members:
+char* str();&nbsp; // Calls freeze(true) &amp; returns buffer. Call freeze(false) to thaw</pre>
+
+<pre>// ostream and strstream (but not istrsteam) members:
+int pcount() const;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Number of chars in output buffer
+void freeze(bool f = true); // prevent stream from freeing or changing buffer</pre>
+<a NAME="io10"></a>
+<h3>
+I/O Manipulators</h3>
+
+<pre>// fmtflags manipulators that take no arguments
+boolalpha, noboolalpha&nbsp; // set/clear ios::boolalpha
+showbase, noshowbase&nbsp;&nbsp;&nbsp; // set/clear ios::showbase
+showpoint, noshowpoint&nbsp; // set/clear ios::showpoint
+showpos, noshowpos,&nbsp;&nbsp;&nbsp;&nbsp; // set/clear ios::showpos
+skipws, noskipws,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // set/clear ios::skipws
+uppercase, nouppercase&nbsp; // set/clear ios::uppercase
+unitbuf, nounitbuf&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // set/clear ios::unitbuf
+left, right, internal&nbsp;&nbsp; // set ios::left, ios::right or ios::internal
+dec, hex, oct&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // set ios::dec, ios::hex or ios::oct
+fixed, scientific&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // set ios::fixed or ios::scientific</pre>
+
+<pre>// Manipulators that take an argument require &lt;iomanips> header
+<b>#include &lt;iomanips>
+</b>setiosflags(fmtflags f)&nbsp;&nbsp;&nbsp; // Set specified flags
+resetiosflags(fmtflags f)&nbsp; // Clear specified flags
+setbase(int b)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // b may be 10 (dec), 16 (hex), or 8 (oct)
+setfill(char f)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Set fill character
+setprecision(int p)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Set floating point output precision
+setw(int w)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // set field width for next output operation</pre>
+<a NAME="clibrary"></a>
+<h2>
+C Library Functions Used in the Book</h2>
+<a NAME="clibrary1"></a>
+<h3>
+Null-Terminated String Functions</h3>
+<b><tt>#include &lt;cstring></tt></b>
+<p><tt>// null-terminated string copy</tt>
+<br><tt>char* strcpy(char* to, const char* from);</tt>
+<br><tt>char* strncpy(char* to, const char* from, size_t maxlen);</tt>
+<p><tt>// null-terminated string comparison.</tt>
+<br><tt>// Returns -1 (s1&lt;s2), 0 (s1==s2), or 1(s1>s2)</tt>
+<br><tt>int strcmp(const char* s1, const char* s2);</tt>
+<p><tt>// null-terminated string length</tt>
+<br><tt>size_t strlen(char* s);</tt>
+<br><a NAME="clibrary2"></a>
+<h3>
+Character Operations</h3>
+<b><tt>#include &lt;cctype></tt></b>
+<p><tt>// Case conversion</tt>
+<br><tt>char toupper(char c);</tt>
+<br><tt>char tolower(char c);</tt>
+<p><tt>// Character tests</tt>
+<br><tt>bool isalnum(char c);</tt>
+<br><tt>bool isalpha(char c);</tt>
+<br><tt>bool isctrl(char c);</tt>
+<br><tt>bool isdigit(char c);</tt>
+<br><tt>bool isgraph(char c);</tt>
+<br><tt>bool islower(char c);</tt>
+<br><tt>bool isprint(char c);</tt>
+<br><tt>bool ispunct(char c);</tt>
+<br><tt>bool isspace(char c);</tt>
+<br><tt>bool isupper(char c);</tt>
+<br><tt>bool isxdigit(char c);</tt>
+<br><a NAME="clibrary3"></a>
+<h3>
+Random Numbers</h3>
+<b><tt>#include &lt;cstdlib></tt></b>
+<p><tt>// Random-number generation</tt>
+<br><tt>int rand();</tt>
+<br><tt>void srand(int seed);</tt>
+<br><a NAME="clibrary4"></a>
+<h3>
+Time and Date</h3>
+<b><tt>#include &lt;ctime></tt></b>
+<pre>struct tm
+{
+&nbsp; int tm_sec;&nbsp;&nbsp;&nbsp; /* seconds after the minute -- [0,60] */
+&nbsp; int tm_min;&nbsp;&nbsp;&nbsp; /* minutes after the hour -- [0,59] */
+&nbsp; int tm_hour;&nbsp;&nbsp; /* hours since midnight -- [0,23] */
+&nbsp; int tm_mday;&nbsp;&nbsp; /* day of the month -- [1,31] */
+&nbsp; int tm_mon;&nbsp;&nbsp;&nbsp; /* months since January -- [0,11] */
+&nbsp; int tm_year;&nbsp;&nbsp; /* years since 1900 */
+&nbsp; int tm_wday;&nbsp;&nbsp; /* days since Sunday -- [0,6] */
+&nbsp; int tm_yday;&nbsp;&nbsp; /* days since January 1 -- [0,365] */
+&nbsp; int tm_isdst;&nbsp; /* Daylight Savings Time flag */
+};</pre>
+<tt>// Get system time</tt>
+<br><tt>time_t time();</tt>
+<p><tt>// Compose time</tt>
+<br><tt>time_t mktime(struct tm* timeptr);</tt>
+<p><tt>// Decompose time</tt>
+<br><tt>struct tm* gmtime(const time_t* timeval);</tt>
+<br><tt>struct tm* localtime(const time_t* timeval);</tt>
+<pre>// format time into a null-terminated string
+size_t strftime(char* nts, size_t ntsmax, const char* format,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct tm* timeptr);
+// Format string contains the following conversion codes:
+//&nbsp;&nbsp; %a&nbsp; abbreviated weekday name
+//&nbsp;&nbsp; %A&nbsp; full weekday name
+//&nbsp;&nbsp; %b&nbsp; abbreviated month name
+//&nbsp;&nbsp; %B&nbsp; full month name
+//&nbsp;&nbsp; %c&nbsp; locale's date and time representation
+//&nbsp;&nbsp; %d&nbsp; month as a number (01-31)
+//&nbsp;&nbsp; %H&nbsp; hour in 24-hour format (00-23)
+//&nbsp;&nbsp; %I&nbsp; hour in 12-hour format (01-12)
+//&nbsp;&nbsp; %j&nbsp; day of the year (001-366)
+//&nbsp;&nbsp; %m&nbsp; month as a number (01-12)
+//&nbsp;&nbsp; %M&nbsp; minute (00-59)
+//&nbsp;&nbsp; %p&nbsp; AM or PM (locale-specific)
+//&nbsp;&nbsp; %S&nbsp; second (00-59)
+//&nbsp;&nbsp; %U&nbsp; week of the year starting Sunday (0-53)
+//&nbsp;&nbsp; %w&nbsp; weekday as a number (0=Sunday to 6=Saturday)
+//&nbsp;&nbsp; %W&nbsp; week of the year starting Monday (0-53)
+//&nbsp;&nbsp; %x&nbsp; locale's date representation
+//&nbsp;&nbsp; %X&nbsp; locale's time representation
+//&nbsp;&nbsp; %y&nbsp; two-digit year (00-99)
+//&nbsp;&nbsp; %Y&nbsp; four-digit year (1900+)
+//&nbsp;&nbsp; %z&nbsp; time zone name
+//&nbsp;&nbsp; %%&nbsp; The percent symbol (%)</pre>
+<a NAME="clibrary5"></a>
+<h3>
+Debugging Assertions</h3>
+
+<pre><b>#include &lt;cassert></b></pre>
+
+<pre>// NOTE: since assert is a macro, it is not in namespace std
+#define assert(cond) ...</pre>
+
+</body>
+</html>
