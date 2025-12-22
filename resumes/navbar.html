@@ -16,26 +16,41 @@ function printFriendly() {
 </script>
 </head>
 <body>
+
+<table width="100%" cellspacing="0" cellpadding="0" border="0">
+  <tr>
+    <td><img src="../HWS_logo_small.gif" alt="HWS Logo" border="0" align="left"></td>
+  </tr>
+</table>
+
+<hr width="100%">
+
 <p><a href="../index.html">Home</a></p>
-<p><a href="resume.html">Resume</a></p>
+<p>Resume</p>
 <div class=sublink>
 <p class=sublink><a href="resume.html">Current Resume</a></p>
 </div>
-<p><a href="../CLI/CLIPowerTools.html">CLI Power Tools</a></p>
+<p><a href="../CLI/index.html">CLI Power Tools</a></p>
 <p><a href="../stdlib-scratch/index.html">Book: <i>
 The C++ Standard Library from Scratch</i></a></p>
 
 <P></P>
 
+<TABLE CLASS="pseudoButton" ><TR><TD>
+	<A href="resume.html">
+		Printer-friendly Version
+	</A>
+</TD></TR></TABLE>
+
 <!-- Neither the <BUTTON> tag nor the <INPUT type=button> tag support word-wrap
      of the button contents. So we create a box that looks and acts like a button
 	 by using border styles and click event handling.
-	 -->
 <TABLE CLASS="pseudoButton" onclick='printFriendly()'><TR><TD>
 	<A href="javascript:printFriendly()" onmousedown='printFriendly()'>
 		Printer-friendly Version
 	</A>
 </TD></TR></TABLE>
+-->
 
 <!-- On browsers that do support <BUTTON>, this is simpler, but doesn't do word-wrap:
 <p><button class="print" onclick='printFriendly()'>Printer Friendly Version</button></p>
@@ -47,14 +62,6 @@ The C++ Standard Library from Scratch</i></a></p>
 	value="Printer-friendly Version">
 </form>
 -->
-
-<hr width="100%">
-<table width="100%" cellspacing="0" cellpadding="0" border="0">
-  <tr><!-- Row 1 -->
-    <td><img src="../candle.gif" width="60" height="100" alt="Candle" border="0" align="left">
-<p class="candleCaption">Lighting a candle for Peace</p></td>
-  </tr>
-</table>
 
 </body>
 </html>

@@ -1,0 +1,10 @@
+# Git ignore file uses glob patterns, not regular expressions.
+# Two consecutive asterisks represent zero or more directories in the path.
+
+*.old
+*.sav
+*.orig
+*.bak
+TAGS
+depends
+*~
