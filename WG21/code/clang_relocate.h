@@ -21,38 +21,45 @@ namespace std {
 // TRAITS
 
 template <class T>
-constexpr inline bool
-is_trivially_relocatable_v = __builtin_is_cpp_trivially_relocatable(T);
-
-template <class T>
 struct is_trivially_relocatable :
-    bool_constant<is_trivially_relocatable_v<T>> {};
-
-template <class T>
-constexpr inline bool is_replaceable_v = __builtin_is_replaceable(T);
-
-template <class T>
-struct is_replaceable : bool_constant<is_replaceable_v<T>> {};
+    bool_constant<__builtin_is_cpp_trivially_relocatable(T)> {};
 
 template <class T>
 constexpr inline bool
-is_nothrow_relocatable_v =
-  is_trivially_relocatable_v<T> || is_nothrow_move_constructible_v<T>;
+is_trivially_relocatable_v = is_trivially_relocatable<T>::value;
+
+template <class T>
+struct is_replaceable : bool_constant<__builtin_is_replaceable(T)> {};
+
+template <class T>
+constexpr inline bool is_replaceable_v = is_replaceable<T>::value;
 
 template <class T>
 struct is_nothrow_relocatable :
-    bool_constant<is_nothrow_relocatable_v<T>> {};
+    bool_constant<(is_trivially_relocatable_v<T> ||
+                   is_nothrow_move_constructible_v<remove_all_extents_t<T>> &&
+                   is_destructible_v<remove_all_extents_t<T>>)>
+{};
+
+template <class T>
+constexpr inline bool
+is_nothrow_relocatable_v = is_nothrow_relocatable<T>::value;
 
 
 // `std::trivially_relocate()`
 
 template <class T>
-requires (is_trivially_relocatable_v<T>)
-inline T* trivially_relocate(T* first, T* last, T* result) {
+inline T* trivially_relocate(T* first, T* last, T* result)
+{
+  static_assert(is_trivially_relocatable_v<T>);
   return __builtin_trivially_relocate(result, first, last-first);
 }
 
 // `std::relocate()`
+
+// Forward declaration
+template <class T>
+constexpr T* relocate(T* first, T* last, T* result) noexcept;
 
 /// `constexpr`-friendly pointer-in-range test.
 template <class T>
@@ -72,31 +79,46 @@ bool __ptr_is_in_range(const T* p, const T* beg, const T* end) noexcept
 }
 
 template <class T>
+constexpr void __move_destroy_element(T* from, T* to) noexcept
+{
+  if constexpr (is_array_v<T>) {
+#if __cpp_lib_start_lifetime_as >= 202207L
+    std::relocate(std::begin(*from), std::end(*from),
+                  std::begin(*std::start_lifetime_as<T>(to)));
+#else
+    std::relocate(std::begin(*from), std::end(*from), std::begin(*to));
+#endif
+  }
+  else {
+    ::new ((void*) to) T(std::move(*from));
+    from->~T();
+  }
+}
+
+template <class T>
 requires (is_nothrow_move_constructible_v<T>)
 constexpr T* __relocate_by_move_destroy(T* first, T* last, T* result) noexcept
 {
   if (__ptr_is_in_range(result, first, last)) {
     result += (last - first);
     auto ret = result;
-    while (first != last) {
-      ::new ((void*) --result) T(std::move(*--last));
-      last->~T();
-    }
+    while (first != last)
+      __move_destroy_element<T>(--last, --result);
     return ret;
   }
   else {
-    while (first != last) {
-      ::new ((void*) result++) T(std::move(*first));
-      (first++)->~T();
-    }
+    while (first != last)
+      __move_destroy_element<T>(first++, result++);
     return result;
   }
 }
 
 template <class T>
-requires (is_nothrow_relocatable_v<T>)
 constexpr T* relocate(T* first, T* last, T* result) noexcept
 {
+  static_assert(is_nothrow_relocatable_v<T>);
+
+
   if (result == first)
     return result + (last - first);
 
@@ -114,6 +136,7 @@ constexpr T* relocate(T* first, T* last, T* result) noexcept
     return trivially_relocate(first, last, result);
   }
 }
+
 } // Close namespace std
 
 #endif // ! defined(INCLUDED_CLANG_RELOCATE)
