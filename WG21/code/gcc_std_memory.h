@@ -204,7 +204,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       static_assert(is_nothrow_relocatable_v<_Tp> && !is_const_v<_Tp>);
 
-      if constexpr (!is_nothrow_move_constructible_v<remove_all_extents_t<_Tp>>)
+      // Trivial relocation cannot happen in a `consteval` context. If `_Tp` is
+      // trivially relocatable, it might also have a move constructor usable in
+      // a `conteval` context, even if it might throw. That is why we test for
+      // `is_move_constructible` and not `is_nothrow_move_constructible`.
+      if constexpr (!is_move_constructible_v<remove_all_extents_t<_Tp>>)
 	{
 	  // Forces non-constexpr evaluation.
 	  return std::trivially_relocate(__first, __last, __result);
@@ -223,8 +227,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       size_t __n = __last - __first;
 
       // If got here, we know that _Tp is move constructible, but we need to
-      // ensure that compilation is not attempted for non-move-constructinble
-      // types, when we don't get to this point in the control flow.
+      // ensure that compilation is not attempted for non-move-constructible
+      // types when we don't get to this point in the control flow.
       if constexpr (is_move_constructible_v<remove_all_extents_t<_Tp>>)
 	{
 	  bool __fwd = true;

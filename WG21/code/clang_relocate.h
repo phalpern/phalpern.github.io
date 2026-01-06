@@ -123,16 +123,20 @@ constexpr T* relocate(T* first, T* last, T* result) noexcept
     return result + (last - first);
 
   if constexpr (! is_trivially_relocatable_v<T>) {
+    // No choice but to use move-destroy.
     return __relocate_by_move_destroy(first, last, result);
   }
-  else if constexpr (! is_nothrow_move_constructible_v<T>) {
-    // If got here, then call is not `constexpr` evaluable.
+  else if constexpr (! is_move_constructible_v<T>) {
+    // No choice but to use trivial relocation.
+    // If got here, then call becomes not `constexpr` evaluable.
     return trivially_relocate(first, last, result);
   }
   else if consteval {
+    // Trivially relocatable, but not in `consteval` context.
     return __relocate_by_move_destroy(first, last, result);
   }
   else {
+    // Preferred choice when no disqualifications are present.
     return trivially_relocate(first, last, result);
   }
 }
